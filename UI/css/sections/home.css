@@ -1,0 +1,33 @@
+main {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2rem 4rem;
+    gap: 2rem;
+}
+.hero-image img {
+    width: 38vw;
+    object-fit:cover;
+}
+.hero-content {
+    padding: 1.5rem 0 0  .5rem;
+}
+.hero-content span {
+    color: #16f8b6;
+    font-family: "outfit";
+}
+.hero-content h4 {
+    padding: 1rem 0 0 0 ;
+    color: rgb(255,255,255,0.9);
+    font-weight: 400;
+}
+.my-names {
+    padding: 3rem 0 ;
+    text-align: center;
+}
+.my-names p {
+    color: #9E7CFF;
+}
+.my-names h4 {
+    padding: .5rem 0 ;
+}
