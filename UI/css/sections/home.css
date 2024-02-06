@@ -1,33 +1,322 @@
 main {
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 2rem 4rem;
-    gap: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2rem 4rem;
+  gap: 2rem;
 }
 .hero-image img {
-    width: 38vw;
-    object-fit:cover;
+  width: 38vw;
+  object-fit: cover;
 }
 .hero-content {
-    padding: 1.5rem 0 0  .5rem;
+  padding: 1.5rem 0 0 0.5rem;
 }
 .hero-content span {
-    color: #16f8b6;
-    font-family: "outfit";
+  color: #16f8b6;
+  font-family: "outfit";
 }
 .hero-content h4 {
-    padding: 1rem 0 0 0 ;
-    color: rgb(255,255,255,0.9);
-    font-weight: 400;
+  padding: 1rem 0 0 0;
+  color: rgb(255, 255, 255, 0.9);
+  font-weight: 400;
 }
 .my-names {
-    padding: 3rem 0 ;
-    text-align: center;
+  padding: 3rem 0;
+  text-align: center;
 }
 .my-names p {
-    color: #9E7CFF;
+  color: #9e7cff;
 }
 .my-names h4 {
-    padding: .5rem 0 ;
+  padding: 0.5rem 0;
+}
+
+@media only screen and (max-width: 768px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-image img {
+    width: 50vw;
+    object-fit: cover;
+  }
+}
+
+.about {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 20vw;
+  gap: 5vw;
+  margin: 2rem 0;
+}
+.about-content p{
+    text-align:start;
+}
+.about img {
+  height: 40vh;
+  width: 40vw;
+  object-fit: cover;
+}
+@media only screen and (max-width: 768px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+    margin: 10rem 0 0 0;
+  }
+}
+
+.skills {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.skills h3 {
+  position: relative;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+.skills h3::after {
+  content: ""; /* Add content property for pseudo-elements */
+  background-image: url("../../assests/Ellipse 1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30rem;
+  height: 10rem;
+  position: absolute;
+  /* top: -9rem; */
+  right: -15vw;
+  z-index: -1;
+}
+.skills img {
+  padding: 2rem 0;
+  width: 45vw;
+}
+
+/* Platforms section styles */
+.platforms {
+  padding: 2rem 4rem;
+}
+.platforms h3,
+p {
+  text-align: center;
+  padding: 1rem 0 0 0;
+}
+.platforms h3::after {
+  content: ""; /* Add content property for pseudo-elements */
+  background-image: url("../../assests/Ellipse 1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30rem;
+  height: 10rem;
+  position: absolute;
+  /* top: 0rem; */
+  right: 32vw;
+  z-index: -1;
+}
+.platform-content {
+  display: flex;
+  justify-content: space-between;
+  /* flex-wrap: wrap; */
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0 0 0;
+}
+.platform-content .application img {
+  width: 12vw;
+}
+.application h2 {
+  padding: 1rem 0;
+}
+.application h5 {
+  font-weight: 400;
+}
+
+@media only screen and (max-width: 768px) {
+  .platform-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0 0 0;
+  }
+}
+
+/* projects section styles */
+.projects {
+  padding: 2rem 4rem;
+}
+.projects h3,
+p {
+  text-align: center;
+  padding: 1rem 0 0 0;
+}
+.projects h3::after {
+  content: ""; /* Add content property for pseudo-elements */
+  background-image: url("../../assests/Ellipse 1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30rem;
+  height: 10rem;
+  position: absolute;
+  /* top: 0rem; */
+  right: 32vw;
+  z-index: -1;
+}
+.projects-content {
+  display: flex;
+  justify-content: space-between;
+  /* flex-wrap: wrap; */
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 0 0 0;
+}
+.projects-content .project img {
+  width: 40vw;
+  /* height: 12rem; */
+  object-fit: cover;
+}
+.project h2 {
+  padding: 1rem 0;
+}
+.project h5 {
+  font-weight: 400;
+  padding: 0 0 1rem 0;
+}
+.project .site {
+  background-color: #5887ff;
+  color: #ffff;
+  padding: 0.85rem 2rem;
+  border-radius: 5rem;
+  border: none;
+}
+.projects .see-more {
+  background-color: #8244ff;
+  color: #ffff;
+  padding: 0.85rem 2rem;
+  border-radius: 5rem;
+  border: none;
+  margin: 4rem 0 0 38.5vw;
+}
+@media only screen and (max-width: 768px) {
+  .projects-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0 0 0;
+  }
+  .project .site {
+    background-color: #5887ff;
+    color: #ffff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5rem;
+    border: none;
+  }
+  .projects .see-more {
+    background-color: #8244ff;
+    color: #ffff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5rem;
+    border: none;
+    margin: 4rem 0 0 20vw;
+  }
+}
+
+/* testimonials section styles */
+.testimonials {
+  padding: 4rem;
+}
+.testimonials h3,
+p {
+  text-align: center;
+  padding: 1rem 0 0 0;
+}
+.testimonials h3::after {
+  content: ""; /* Add content property for pseudo-elements */
+  background-image: url("../../assests/Ellipse 1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30rem;
+  height: 10rem;
+  position: absolute;
+  /* top: 0rem; */
+  right: 32vw;
+  z-index: -1;
+}
+.testimonials-content {
+  display: flex;
+  justify-content: space-between;
+  /* flex-wrap: wrap; */
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 0 0 0;
+}
+.testimonial {
+  border: 1px solid rgb(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.testimonial h5 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.testimonial p {
+  text-align: start;
+  color: rgb(255, 255, 255, 0.6);
+}
+.client {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0 0 0;
+}
+.client img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 5rem;
+  object-fit: fill;
+}
+.client h5 {
+  font-weight: 400;
+  font-size: 1rem;
+}
+.client p {
+  font-weight: 400;
+  color: rgb(255, 255, 255, 0.8);
+}
+@media only screen and (max-width: 768px) {
+  .testimonials-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 0 0 0;
+  }
+  .testimonial h5 {
+    font-size: 1rem;
+    font-weight: 200;
+  }
+  .client h5 {
+    font-weight: 200;
+    font-size: 0.85rem;
+  }
+  .client p {
+    font-weight: 300;
+    color: rgb(255, 255, 255, 0.8);
+  }
 }

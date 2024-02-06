@@ -1,0 +1,48 @@
+.blogs {
+  padding: 2rem 4rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.blog {
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  border-radius: 1rem;
+  width: 380px;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.blog .img {
+  width: 380px;
+  height: 200px;
+  object-fit:cover;
+}
+.blog h2 {
+  padding: 1rem;
+}
+.blog p {
+  padding: 0 1rem 1rem 1rem;
+}
+.features {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+.likes {
+  display: flex;
+  /* align-items: center; */
+}
+.likes img {
+  height: 1.5rem;
+}
+.blog button {
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: rgb(130, 68, 255, 30);
+  margin: 1rem;
+  margin-left: 6.5vw;
+}

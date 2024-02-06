@@ -5,14 +5,14 @@
   outline: none;
 }
 
-@import url("sections/home.css");
+/* @import url("sections/home.css"); */
 
 /* @import("sections/home.css"); */
-@import("sections/about.css");
+/* @import("sections/about.css");
 @import("sections/portfolio.css");
 @import("sections/blogs.css");
 @import("sections/blog.css");
-@import("sections/contact.css");
+@import("sections/contact.css"); */
 
 // <uniquifier>: Use a uniquifier for the class name
 // <weight>: Use a value from 100 to 900
@@ -114,7 +114,7 @@ li {
     align-items: center;
   }
   .active::after {
-    content: ""; /* Add content property for pseudo-elements */
+    content: ""; 
     background-color: #24245b;
     width: 100vw;
     height: 100vh;
@@ -203,7 +203,6 @@ li {
     border-radius: 5rem;
     margin: 2rem 0  0 0;
 }
-/* Small screens */
 
 @media screen and (max-width: 768px) {
     .ctn img{
@@ -237,7 +236,7 @@ footer {
 }
 
 footer::after {
-  content: ""; /* Add content property for pseudo-elements */
+  content: ""; 
   background-color: #24245b;
   width: 25rem;
   height: 25rem;
@@ -289,7 +288,7 @@ footer::after {
   display: flex;
   gap: 0.5rem;
   align-items: center;
-}
+} 
 
 /* Small screens */
 
