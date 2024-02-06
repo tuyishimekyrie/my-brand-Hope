@@ -46,3 +46,6 @@
   margin: 1rem;
   margin-left: 6.5vw;
 }
+.blog button:hover{
+    cursor: pointer;
+}
