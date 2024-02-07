@@ -1,7 +1,8 @@
 .contact {
     display: flex;
     gap: 2rem;
-    padding: 2rem 4rem
+    padding: 2rem 4rem;
+    margin-bottom: 1.2rem ;
 }
 
 .location img {
