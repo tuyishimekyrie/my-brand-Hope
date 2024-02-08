@@ -1,0 +1,27 @@
+.project-message span {
+  color: #5887ff;
+  font-size: 1.2vw;
+}
+
+
+.project-message h4 {
+  padding-top: 1.5rem;
+  color: #fff;
+  font-size: 1vw;
+}
+
+@media only screen and (max-width: 768px) {
+  .project-message span {
+  color: #5887ff;
+  font-size:2vw;
+}
+
+.project-message h4 {
+  padding-top: 1.5rem;
+  color: #fff;
+  font-size: 1.25vw;
+}
+.project-button button {
+  padding: .25rem;
+}
+}

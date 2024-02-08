@@ -2,3 +2,15 @@
 text-align: start;
 padding: 2rem 4rem;
 }
+.About {
+    margin: 1rem 0;
+}
+.About .about-content p {
+    width: 32.5vw;
+}
+@media only screen and (max-width: 768px) {
+    .About .about-content p {
+    width: 85.5vw;
+    padding: 0;
+}
+}

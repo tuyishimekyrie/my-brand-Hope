@@ -1,0 +1,67 @@
+.users-main {
+    background-color: #141B34;
+    margin: 1rem;
+    padding: 1rem;
+    width: 80vw;
+    overflow:hidden
+}
+.scrollable {
+    overflow:scroll;
+    height: 100%;
+}
+.user-header {
+    display: flex;
+    gap: 62.5vw;
+    jsutify-content: space-between;
+    /* width: 100vw; */
+}
+.user-header button {
+    border: none;
+    background: none;
+    color: white;
+    display: none;
+}
+.users-main .user-header {
+    text-align: start;
+    color: white;
+    border-bottom: 1px solid rgb(255,255,255,.25);
+    padding-bottom: .25rem ; 
+}
+.user {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    color: #fff;
+}
+.user button {
+    color: #FF1E2C;
+    border: none;
+    background: none;
+    font-weight: bold;
+}
+@media only screen and (max-width: 768px) {
+    .container {
+        height:100%;
+    }
+    .users-main {
+        width: 100vw;
+
+    }
+    .user-header {
+    display: flex;
+    gap: 45vw;
+    jsutify-content: space-between;
+    /* width: 100vw; */
+}
+.user-header button {
+    display: flex;
+}
+.user p{
+    font-size: 2vw
+}
+}
+@media only screen and (max-width: 480px) {
+.user p:nth-child(2) {
+    display: none;
+}
+}

@@ -9,11 +9,14 @@
     padding: 1.2rem 0;
     text-align:start;
 }
+.projects {
+    z-index:-1;
+}
 .projects-content {
     /* flex-wrap: wrap */
 }
 .project .site {
-    background-color: #312168;
+    /* background-color: #312168; */
 }
 
 /* call to action styles */

@@ -1,11 +1,12 @@
 .blogs {
-  padding: 2rem 4rem;
+  padding: 2rem 4.25rem;
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
 }
 .blog {
   border: 1px solid rgb(255, 255, 255, 0.5);
+  z-index:-10;
   border-radius: 1rem;
   width: 380px;
   overflow: hidden;
@@ -48,4 +49,22 @@
 }
 .blog button:hover{
     cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .blogs {
+  padding: 2rem 4.5rem;
+  display: flex;
+  justify-content:center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.blog {
+  border: 1px solid rgb(255, 255, 255, 0.5);
+  z-index:-10;
+  border-radius: 1rem;
+  width: 380px;
+  overflow: hidden;
+  position: relative;
+}
 }

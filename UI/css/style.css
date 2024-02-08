@@ -32,10 +32,10 @@
   --purple-with-opacity: rgba(var(--purple), 0.36);
 }
 a {
-    list-style: none;
-    text-decoration: none;
-    outline: none;
-    color: var(--white)
+  list-style: none;
+  text-decoration: none;
+  outline: none;
+  color: var(--white);
 }
 body {
   background: var(--bg-color);
@@ -98,32 +98,31 @@ li {
   display: none;
 }
 
-
-
-
-
 /* Breakpoint for devices */
 /* Styles for tablets */
 @media only screen and (max-width: 768px) {
+  .menu-links {
+    display: none;
+  }
   header {
-    position: relative;
     padding: 1rem 4rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: relative;
     align-items: center;
   }
-  .active::after {
-    content: ""; 
+  header.active::before {
+    content: "";
     background-color: #24245b;
     width: 100vw;
     height: 100vh;
     position: absolute;
     top: 0;
     right: 0;
-    z-index: -1;
   }
-  .menu-links {
+  .menu-links.active {
+    z-index: 1;
     position: absolute;
     inset: 6rem 0.2rem 0 0;
     display: flex;
@@ -137,6 +136,10 @@ li {
   .menu-open {
     display: block;
   }
+  .menu,
+  .menu-close {
+    z-index: 1;
+  }
   .menu .menu-close {
     display: none;
   }
@@ -146,11 +149,11 @@ li {
     justify-content: space-between;
     align-items: center;
     padding: 0 1.2rem;
-    gap: 2rem;
+    gap: 3rem;
   }
   .menu-links ul li {
     border: 1px solid var(--white);
-    padding: 0.35rem 20px;
+    padding: 0.4rem 20px;
     border-radius: 4rem;
   }
   .menu-links ul li:hover {
@@ -162,7 +165,7 @@ li {
   .login {
     background-color: var(--purple-with-opacity);
     border: none;
-    padding: 0.65rem 1.5rem;
+    padding: 0.65rem 2rem;
     border-radius: 5rem;
     color: var(--white);
   }
@@ -173,59 +176,84 @@ li {
   }
 }
 
-
 /* call to action styles */
 .ctn {
-    margin: 3vw 38vw;
-    position:relative;
+  margin: 3vw 38vw;
+  position: relative;
 }
-.ctn img{
-    width: 25vw;
-    height:14rem;
+.ctn img {
+  width: 25vw;
+  height: 14rem;
 }
 .ctn-content {
-    position: absolute;
-    left:2vw  ;
-    top:0rem  ;
-    padding: 1vw;
-    text-align:center;
+  position: absolute;
+  left: 2.6vw;
+  top: 0rem;
+  padding: 1vw;
+  text-align: center;
 }
 .ctn-content h3 {
-    color: #1E1E1E;
-    padding: 1vw 0;
+  color: #1e1e1e;
+  padding: 1vw 0 8.5vh 0;
 }
-.ctn-content button {
-    background-color: #1E1E1E;
-    padding: 1.2vw 2vw;
-    border: none;
-    font-size: 1.2rem;
-    color: var(--white);
-    border-radius: 5rem;
-    margin: 2rem 0  0 0;
+.ctn-content a {
+  background-color: #1e1e1e;
+  padding: 1.2vw 2vw;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--white);
+  border-radius: 5rem;
+  margin: 2rem 0 0 0;
 }
 
 @media screen and (max-width: 768px) {
-    .ctn img{
-    width: 40vw;
-    height:30vh;
-}
-    .ctn-content button {
-    background-color: #1E1E1E;
+  .ctn{
+    width: 45vw;
+  }
+  .ctn img {
+    width: 45vw;
+    height: 30vh;
+    margin: 3vw 2vw;
+  }
+  .ctn-content {
+    position: absolute;
+    left: 2vw;
+    top: 0rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .ctn-content a {
+    background-color: #1e1e1e;
     padding: 1vw 11vw;
     border: none;
     font-size: 1r.2em;
     color: var(--white);
     border-radius: 5rem;
-    margin: 1rem 0  0 0;
-}
+    /* margin: 10rem 0 0 0; */
+  }
+  .ctn img {
+    width: 45vw;
+    height: 14rem;
+  }
+  .ctn-content h3 {
+    color: #1e1e1e;
+    padding:  .5rem 0 4rem 0;
+  }
+  .ctn-content a {
+    background-color: #1e1e1e;
+    padding: 1.2vw 1vw;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--white);
+    border-radius: 5rem;
+    margin: 2rem 0 0 0;
+  }
 }
 /* end ofcall to action styles */
-
 
 /* Footer starts */
 
 footer {
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -236,7 +264,7 @@ footer {
 }
 
 footer::after {
-  content: ""; 
+  content: "";
   background-color: #24245b;
   width: 25rem;
   height: 25rem;
@@ -289,7 +317,7 @@ footer::after {
   display: flex;
   gap: 0.5rem;
   align-items: center;
-} 
+}
 
 /* Small screens */
 
@@ -308,7 +336,7 @@ footer::after {
     align-items: center;
     justify-content: start;
     gap: 1rem;
-    margin: 0 .2rem .1rem 0;
+    margin: 0 0.2rem 0.1rem 0;
   }
   .footer-links {
   }
