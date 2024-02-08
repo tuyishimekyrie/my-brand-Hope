@@ -6,14 +6,14 @@ main {
   gap: 2rem;
 }
 .hero-image img {
-  width: 38vw;
+  width: 40vw;
   object-fit: cover;
 }
 .hero-content {
-  padding: 1.5rem 0 0 0.5rem;
+  padding: 4rem 0 0 0.5rem;
 }
 .hero-content h1 {
-  font-size: 3.5vw;
+  font-size: 3.4vw;
 }
 .hero-content h1,
 h4 {
@@ -27,7 +27,7 @@ h4 {
   padding: 1rem 0 0 0;
   color: rgb(255, 255, 255, 0.9);
   font-weight: 400;
-  font-size: 1.2vw;
+  font-size: 1.35vw;
 }
 .my-names {
   padding: 3rem 0;
@@ -51,22 +51,30 @@ h4 {
     width: 50vw;
     object-fit: cover;
   }
+  .hero-content h4 {
+    padding: 1rem 0 0 0;
+    color: rgb(255, 255, 255, 0.9);
+    font-weight: 400;
+    font-size: 2.35vw;
+  }
 }
 
 .about {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 20vw;
+  padding: 1rem 5rem;
   gap: 5vw;
   margin: 2rem 0;
 }
 .about-content p {
   text-align: start;
+  width: 45vw;
 }
 .about img {
+  margin-left: 15vw;
   height: 40vh;
-  width: 40vw;
+  /* width: 40vw; */
   object-fit: cover;
 }
 @media only screen and (max-width: 768px) {
@@ -74,6 +82,12 @@ h4 {
     display: flex;
     flex-direction: column;
     margin: 10rem 0 0 0;
+  }
+  .about img {
+    margin-left: 0vw;
+    height: 40vh;
+    /* width: 40vw; */
+    object-fit: cover;
   }
 }
 
@@ -99,7 +113,7 @@ h4 {
   height: 10rem;
   position: absolute;
   /* top: -9rem; */
-  right: 30vw;
+  right: 36.5vw;
   z-index: -1;
 }
 .skills img {
@@ -124,7 +138,7 @@ h4 {
     height: 10rem;
     position: absolute;
     /* top: -9rem; */
-    right: 30vw;
+    right: 32vw;
     z-index: -1;
   }
   .skills img {
@@ -136,7 +150,7 @@ h4 {
 /* Platforms section styles */
 .platforms {
   padding: 2rem 4rem;
-  position:relative
+  position: relative;
 }
 .platforms h3,
 p {
@@ -177,18 +191,18 @@ p {
 
 @media only screen and (max-width: 768px) {
   .platforms::before {
-  content: ""; /* Add content property for pseudo-elements */
-  background-image: url("../../assests/Ellipse 1.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 30rem;
-  height: 10rem;
-  position: absolute;
-  /* top: 0rem; */
-  right: 8vw;
-  z-index: -1;
-}
+    content: ""; /* Add content property for pseudo-elements */
+    background-image: url("../../assests/Ellipse 1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30rem;
+    height: 10rem;
+    position: absolute;
+    /* top: 0rem; */
+    right: 8vw;
+    z-index: -1;
+  }
   .platform-content {
     display: flex;
     justify-content: space-between;
@@ -202,7 +216,7 @@ p {
 /* projects section styles */
 .projects {
   padding: 2rem 4rem;
-  position: relative
+  position: relative;
 }
 .projects h3,
 p {
@@ -259,27 +273,27 @@ p {
 }
 @media only screen and (max-width: 768px) {
   .project h2 {
-  padding: 1rem 0;
-  font-size: 1.25rem
-}
-.project h5 {
-  font-size: .85rem;
-  font-weight: 400;
-  padding: 0 0 1rem 0;
-}
+    padding: 1rem 0;
+    font-size: 1.25rem;
+  }
+  .project h5 {
+    font-size: 0.85rem;
+    font-weight: 400;
+    padding: 0 0 1rem 0;
+  }
   .projects::before {
-  content: ""; /* Add content property for pseudo-elements */
-  background-image: url("../../assests/Ellipse 1.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 30rem;
-  height: 10rem;
-  position: absolute;
-  /* top: 0rem; */
-  right: 8vw;
-  z-index: -1;
-}
+    content: ""; /* Add content property for pseudo-elements */
+    background-image: url("../../assests/Ellipse 1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30rem;
+    height: 10rem;
+    position: absolute;
+    /* top: 0rem; */
+    right: 8vw;
+    z-index: -1;
+  }
   .projects-content {
     display: flex;
     justify-content: space-between;
@@ -301,14 +315,14 @@ p {
     padding: 0.5rem 1.2rem;
     border-radius: 5rem;
     border: none;
-    margin: 5rem 0 0 20vw;
+    margin: 5rem 0 0 30vw;
   }
 }
 
 /* testimonials section styles */
 .testimonials {
   padding: 4rem;
-  position: relative
+  position: relative;
 }
 .testimonials h3,
 p {
@@ -344,7 +358,7 @@ p {
 .testimonial h5 {
   font-size: 1.2rem;
   font-weight: 400;
-  padding: 0 0 .5rem 0
+  padding: 0 0 0.5rem 0;
 }
 .testimonial p {
   text-align: start;
@@ -374,18 +388,18 @@ p {
 }
 @media only screen and (max-width: 768px) {
   .testimonials::before {
-  content: ""; /* Add content property for pseudo-elements */
-  background-image: url("../../assests/Ellipse 1.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 30rem;
-  height: 10rem;
-  position: absolute;
-  /* top: 0rem; */
-  right: 10vw;
-  z-index: -1;
-}
+    content: ""; /* Add content property for pseudo-elements */
+    background-image: url("../../assests/Ellipse 1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30rem;
+    height: 10rem;
+    position: absolute;
+    /* top: 0rem; */
+    right: 10vw;
+    z-index: -1;
+  }
   .testimonials-content {
     display: flex;
     flex-direction: column;

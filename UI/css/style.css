@@ -69,14 +69,17 @@ header {
   align-items: center;
   padding: 0 1.2rem;
 }
-.menu-links ul li:hover {
-  color: var(--green);
+.menu-links ul li a:hover {
+  color: #16f8b6;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 .logo {
   display: flex;
   align-items: center;
+}
+.logo img {
+  width: 5vw;
 }
 li {
   list-style: none;
@@ -101,6 +104,9 @@ li {
 /* Breakpoint for devices */
 /* Styles for tablets */
 @media only screen and (max-width: 768px) {
+  .logo img {
+  width: 10vw;
+}
   .menu-links {
     display: none;
   }
@@ -211,9 +217,9 @@ li {
     width: 45vw;
   }
   .ctn img {
-    width: 45vw;
+    width: 55vw;
     height: 30vh;
-    margin: 3vw 2vw;
+    margin: 3vw 0vw;
   }
   .ctn-content {
     position: absolute;
@@ -226,7 +232,7 @@ li {
     background-color: #1e1e1e;
     padding: 1vw 11vw;
     border: none;
-    font-size: 1r.2em;
+    font-size: 1rem;
     color: var(--white);
     border-radius: 5rem;
     /* margin: 10rem 0 0 0; */
@@ -302,6 +308,9 @@ footer::after {
   align-items: center;
   justify-content: space-between;
   padding: 0.25rem 0;
+}
+.media img {
+  /* width: 1.5vw */
 }
 
 .address h2 {
