@@ -19,7 +19,8 @@
 .project-message h4 {
   padding-top: 1.5rem;
   color: #fff;
-  font-size: 1.25vw;
+  font-size: 2vw;
+  font-weight: 400
 }
 .project-button button {
   padding: .25rem;
