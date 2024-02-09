@@ -63,6 +63,10 @@ width: 35vw;
     cursor: pointer;
     background-color: #0BA9ED;
 }
+.error {
+    color: #FF1E2C;
+    font-weight: 500;
+}
 
 @media only screen and (max-width:768px ){
     .contact {

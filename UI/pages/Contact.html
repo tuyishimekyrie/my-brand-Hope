@@ -27,7 +27,7 @@
             <li><a href="./Portfolio.html">Portfolio</a></li>
             <li><a href="./Blogs.html">Blogs</a></li>
           </ul>
-           <a href="./login.html"><button class="login">Login</button></a>
+          <a href="./login.html"><button class="login">Login</button></a>
         </div>
         <div class="menu">
           <div class="menu-open">
@@ -57,14 +57,16 @@
           <form class="form">
             <div>
               <label for="email">Email</label>
-              <input type="text" id="email" placeholder="Type your Email">
+              <input type="text" id="email" placeholder="Type your Email" required />
+              
             </div>
             <div>
               <label for="message">Message</label>
-              <textarea placeholder="Type your Message"></textarea>
+              <textarea placeholder="Type your Message" id="message" required></textarea>
+              
+              <span class="error"></span>
             </div>
             <button class="btn-submit">submit</button>
-
           </form>
         </div>
         <div class="location">
@@ -72,7 +74,7 @@
         </div>
       </div>
       <!-- Footer Secion Start -->
-       <footer>
+      <footer>
         <div class="engineer"><p>@Engineer Kyrie</p></div>
         <div class="footer-content">
           <div class="links">
@@ -102,22 +104,22 @@
             </div>
             <div class="address">
               <h2>Address</h2>
-               <div class="email">
+              <div class="email">
                 <img src="../assests/Location.png" alt="" />
-                
+
                 <p>Kigali, Rwanda</p>
               </div>
-               <div class="email">
+              <div class="email">
                 <img src="../assests/Email.png" alt="" />
                 <p>tuyishimehope01@gmail.com</p>
               </div>
             </div>
           </div>
-          <div>@All  Rights Reserved 2024</div>
+          <div>@All Rights Reserved 2024</div>
         </div>
-      </footer> 
+      </footer>
       <!-- Footer Secion end -->
     </div>
-<script src="../JS/homemenu.js"></script>
+    <script src="../JS/contactForm.js"></script>
   </body>
 </html>
