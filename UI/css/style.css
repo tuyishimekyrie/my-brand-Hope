@@ -257,7 +257,7 @@ li {
   }
   .ctn-content a {
     background-color: #1e1e1e;
-    padding: 4vw 4vw;
+    padding: 1.4vw 2vw;
     border: none;
     font-size: 1.2rem;
     color: var(--white);
