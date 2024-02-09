@@ -21,21 +21,22 @@ form {
 }
 form h1 {
   color: white;
+  font-size: 3vw
 }
 form div {
   display: flex;
   flex-direction:column;
-  gap: .5rem
+  gap: 1rem
 }
 form div label {
   font-size: 1.2rem;
   color: white
 }
 form div input, textarea {
-  padding: .85rem .2rem;
+  padding: .85rem .5rem;
   border: none;
   outline: none;
-  background-color:rgb(38,38,80,.57);
+  background-color:rgb(38,38,80,.5);
   border-radius: .25rem;
 }
 form div #image{
@@ -56,10 +57,14 @@ form div textarea::placeholder {
 form button {
   font-size: 1.25rem;
   padding: .8rem 0 ;
-  background-color: #0BA9ED;
+  background-color: rgb(38,38,180);
 color: white;
 border:none;
 border-radius: .25rem;
+}
+form button:hover {
+  background-color: #0BA9ED;
+  cursor: pointer;
 }
 .scrollable {
   margin: 0 1rem;
@@ -97,14 +102,29 @@ border-radius: .25rem;
   border-radius:.25rem;
   background-color:#58CDFF;
 }
+.blog .content .btns button:first-child:hover {
+  border: none;
+  color: white;
+  border-radius:.25rem;
+  background-color:#1d4ed8;
+  cursor: pointer;
+}
 .blog .content .btns button:last-child {
   border: none;
   color: white;
   border-radius:.25rem;
   background-color:#FF1E2C;
 }
+.blog .content .btns button:last-child:hover {
+  border: none;
+  color: white;
+  border-radius:.25rem;
+  background-color:#e11d48;
+  cursor: pointer;
+}
 .blog .content h2{
 color: white;
+font-size: 1.25vw
 }
 .blog .image img{
   width: 10vw;
@@ -155,7 +175,7 @@ body {
   top: 0;
   display:flex;
   justify-content: center;
-  padding: 4rem 0;
+  padding: 4rem 1rem;
   background-color: rgb(0,0,0,.78);
   width: 100vw;
   height: 100vh;
@@ -172,7 +192,7 @@ body {
   padding: .85rem 0
 }
 .modal.active form .inputs input, textarea{
-  background-color: rgb(38,38,80.57);
+  background-color: rgb(38,38,80,.57);
   border: none;
   color: white;
   border-radius: .25rem;
@@ -194,4 +214,7 @@ form .head img {
   width: 2vw;
   height: 3vh;
   object-fit: cover;
+}
+.close{
+  cursor: pointer;
 }

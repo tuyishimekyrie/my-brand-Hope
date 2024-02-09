@@ -17,7 +17,6 @@
         <div class="sidebar ">
             <div class="logo">
                 <img src="../assests/logo.png" alt="">
-                <p>Kyrie</p>
             </div>
             <div class="links ">
                <a href="./HomeDashboard.html" class="link active">
@@ -64,7 +63,7 @@
                     <a href="./login.html">Logout</a>
                 </div>
                  <div class="link menu">
-                    <button>Menu</button>
+                    <button class="menu">Menu</button>
                 </div>
             </div>
             <div class="cards">
@@ -132,20 +131,21 @@
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Month', 'Income', 'Emails'],
-          ['Jan',  500,      400],
-          ['Feb',  1000,      460],
-          ['Mar',  1160,       520],
-          ['Apr',  1200,      540],
-          ['May',  1330,      540],
-          ['June',  1430,      540],
-          ['July',  1530,      540],
-          ['Aug',  1630,      540],
-          ['Sept',  1730,      540],
-          ['Nov',  1830,      540],
-          ['Dec',  1890,      540],
-        ]);
+       var data = google.visualization.arrayToDataTable([
+  ['Month', 'Income', 'Emails'],
+  ['Jan',  500,      400],
+  ['Feb',  700,      460],
+  ['Mar',  900,      520],
+  ['Apr',  1100,     540],
+  ['May',  1300,     560],
+  ['Jun',  1500,     580],
+  ['Jul',  1700,     600],
+  ['Aug',  1900,     620],
+  ['Sep',  2100,     640],
+  ['Oct',  2300,     660],
+  ['Nov',  2500,     680],
+  ['Dec',  2700,     700]
+]);
 
         var options = {
       title: 'Income',
@@ -198,5 +198,6 @@
         chart.draw(data, options);
       }
     </script>
+    <script src="../JS/dashboardsidebar.js"></script>
 </body>
 </html>

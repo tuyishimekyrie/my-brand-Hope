@@ -1,16 +1,24 @@
-.heading{
-text-align: start;
-padding: 2rem 4rem;
+.heading {
+  text-align: start;
+  padding: 2rem 4rem;
 }
 .About {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 .About .about-content p {
-    width: 32.5vw;
+  /* width: 32.5vw; */
 }
-@media only screen and (max-width: 768px) {
-    .About .about-content p {
+.platforms {
+  margin-top: 15rem;
+}
+@media only screen and (max-width: 786px) {
+  .about .about-content p {
+    display: flex;
+    flex-direction: column;
     width: 85.5vw;
     padding: 0;
-}
+  }
+  .platforms {
+    margin-top: 80vh;
+  }
 }

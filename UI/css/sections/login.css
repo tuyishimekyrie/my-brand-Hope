@@ -4,6 +4,9 @@
     padding: .5rem 0;
     text-align: right
 }
+.pass:hover{
+    color: #033AFF;
+}
 form {
     margin: 5vh 0;
 }
@@ -28,4 +31,13 @@ a {
 .reg {
 background: none;
     color: #033AFF;
+}
+.button:hover {
+    transition: all .2s ease;
+    background-color: #033AFF;
+}
+.btns button:hover {
+    cursor: pointer;
+    transition: all .2s ease;
+    background-color: #033AFF;
 }

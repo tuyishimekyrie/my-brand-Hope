@@ -10,7 +10,7 @@
   height: 100vh;
 }
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 .user img {
   width: 100px;
@@ -49,7 +49,7 @@ a {
 }
 .links .link p {
   font-size: 1.5rem;
-  color: rgb(255,255,255,.9)
+  color: rgb(255, 255, 255, 0.9);
 }
 .link.active {
   padding: 0.5rem;
@@ -62,7 +62,7 @@ a {
   background-color: #031e62;
   cursor: pointer;
 }
-.logout p {
+.link:last-child p {
   color: #982b15;
 }
 .logger {
@@ -74,7 +74,9 @@ a {
   top: 0;
   color: #fff;
   text-align: center;
-  padding:4.5vh 0 0 0 
+  padding: 4.5vh 0 0 0;
+  font-size: 1vw;
+  overflow-wrap: break-word;
 }
 .logger span {
   color: #16f8b6;
@@ -86,12 +88,11 @@ a {
   height: 18vh;
 }
 
-
 .header {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
   padding: 0.5rem 0.85rem;
   width: 80vw;
   border-bottom: 1px solid #131366;
@@ -103,6 +104,10 @@ a {
 }
 .info p {
   color: rgb(255, 255, 255, 0.6);
+  font-size: 1.2vw;
+}
+.info h3 {
+  font-size: 1.5vw;
 }
 .user {
   display: flex;
@@ -110,8 +115,12 @@ a {
   justify-content: center;
   gap: 1.5rem;
 }
+
 .header .user img {
   width: 3vw;
+}
+.user img:nth-child(1) {
+width: 1.5vw;
 }
 .user .img {
   border-radius: 5rem;
@@ -120,8 +129,8 @@ a {
   color: white;
   text-decoration: none;
 }
-.user a:hover{
-    color: #8244FF;
+.user a:hover {
+  color: #8244ff;
 }
 
 /* Cards */
@@ -174,10 +183,10 @@ a {
   height: 3vh;
 }
 .row1 p {
-    color: white;
+  color: white;
 }
 .row2 p {
-    color: white;
+  color: white;
 }
 .row2 button {
   border: none;
@@ -200,7 +209,9 @@ a {
   display: none;
 }
 @media only screen and (max-width: 850px) {
-
+  .user img:nth-child(1) {
+width: 2vw;
+}
   .container {
     background-color: #0e1227;
     display: flex;
@@ -210,21 +221,21 @@ a {
     padding: 0.5rem 0;
   }
   .menu {
-      display: flex;
-    }
-    .sidebar {
-      display: none;
-    }
-    .sidebar.active {
-        display: flex;
-        justify-content: start;
-        padding: 4rem 0 0 0;
-    }
-    .sidebar .logo {
-        display: none;
-    }
+    display: flex;
+  }
+  .sidebar {
+    display: none;
+  }
+  .sidebar.active {
+    display: flex;
+    justify-content: start;
+    padding: 4rem 0 0 0;
+  }
+  .sidebar .logo {
+    display: none;
+  }
   .links .link p {
-    font-size: .65rem;
+    font-size: 0.65rem;
   }
   .logger {
     display: none;

@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
+  font-family: "Outfit", sans-serif;
 }
 
 /* @import url("sections/home.css"); */
@@ -105,8 +106,8 @@ li {
 /* Styles for tablets */
 @media only screen and (max-width: 768px) {
   .logo img {
-  width: 10vw;
-}
+    width: 10vw;
+  }
   .menu-links {
     display: none;
   }
@@ -211,9 +212,18 @@ li {
   border-radius: 5rem;
   margin: 2rem 0 0 0;
 }
+.ctn-content a:hover {
+  background-color: #2e1065;
+  padding: 1.2vw 2vw;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--white);
+  border-radius: 5rem;
+  margin: 2rem 0 0 0;
+}
 
 @media screen and (max-width: 768px) {
-  .ctn{
+  .ctn {
     width: 45vw;
   }
   .ctn img {
@@ -243,11 +253,11 @@ li {
   }
   .ctn-content h3 {
     color: #1e1e1e;
-    padding:  .5rem 0 4rem 0;
+    padding: 0.5rem 0 4rem 0;
   }
   .ctn-content a {
     background-color: #1e1e1e;
-    padding: 1.2vw 1vw;
+    padding: 4vw 4vw;
     border: none;
     font-size: 1.2rem;
     color: var(--white);
@@ -338,6 +348,7 @@ footer::after {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
   .links {
     display: flex;
@@ -349,4 +360,16 @@ footer::after {
   }
   .footer-links {
   }
+  footer::after {
+  content: "";
+  background-color: #24245b;
+  width: 25rem;
+  height: 25rem;
+  position: absolute;
+  border-radius: 15rem;
+  top: -20rem;
+  right:8.5rem;
+  filter: blur(80px);
+  z-index: -1;
+}
 }

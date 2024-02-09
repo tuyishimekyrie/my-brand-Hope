@@ -1,3 +1,4 @@
+
 .contact {
     display: flex;
     gap: 2rem;
@@ -35,22 +36,32 @@ width: 35vw;
     padding: 1rem .25rem;
     border: none;
     outline: none;
-    background: rgb(26,25,60)
+    background: rgb(26,25,60);
+    border-radius: .25rem;
+    color: white;
 }
 .form div textarea {
     padding: 1rem .25rem;
     border: none;
     outline: none;
-    background: rgb(26,25,60)
+    background: rgb(26,25,60);
+    color: white
+}
+.form div input::placeholder{
+
 }
 .btn-submit {
-    padding: .85rem 2.5rem;
+    padding: .65rem 2.5rem;
     border: none;
     background: rgb(130,68,255,.3);
     color: white;
     border-radius: 5rem;
     font-size: 1.2rem;
     margin: 1rem 0;
+}
+.btn-submit:hover{
+    cursor: pointer;
+    background-color: #0BA9ED;
 }
 
 @media only screen and (max-width:768px ){

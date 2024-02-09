@@ -11,6 +11,10 @@
   flex-direction: column;
   gap: 1.5rem;
 }
+.email:hover {
+  cursor: pointer;
+  background-color: rgb(38, 38, 80, 0.58);
+}
 .emails .email-header {
   display: flex;
   justify-content: space-between;
@@ -41,24 +45,33 @@ p {
   background: none;
   border: 1px solid rgb(255, 255, 255, 0.5);
 }
+.emails .email-buttons .reply:hover{
+  cursor: pointer;
+  background-color: rgb(255,255,255, 0.8);
 
+}
+.emails .email-buttons .markasread:hover{
+  cursor: pointer;
+  background-color: rgb(255,255,255, 0.8);
+
+}
 @media only screen and (max-width: 768px) {
-    .container {
-        height: 100vh;
-        background: #0E1227;
-    }
-    .emails p {
-  color: white;
-  font-size: 1.25vw;
-}
-    .emails .email-message p {
-  color: white;
-  font-size: 2vw;
-}
-.emails .email-buttons button {
-  border-radius: 0.5rem;
-  border: none;
-  padding: 0.45rem 1.25rem;
-  color: #0cb6ff;
-}
+  .container {
+    height: 100vh;
+    background: #0e1227;
+  }
+  .emails p {
+    color: white;
+    font-size: 1.25vw;
+  }
+  .emails .email-message p {
+    color: white;
+    font-size: 2vw;
+  }
+  .emails .email-buttons button {
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.45rem 1.25rem;
+    color: #0cb6ff;
+  }
 }
