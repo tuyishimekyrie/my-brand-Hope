@@ -75,3 +75,31 @@ p {
     color: #0cb6ff;
   }
 }
+
+@media only screen and (max-width: 468px) {
+  .container {
+    height: 100vh;
+    background: #0e1227;
+  }
+  .emails {
+    margin: 0;
+    padding:.85rem 0.85rem;
+  }
+  .email {
+    width:100%
+  }
+  .emails p {
+    color: white;
+    font-size: 2.5vw;
+  }
+  .emails .email-message p {
+    color: white;
+    font-size: 2.5vw;
+  }
+  .emails .email-buttons button {
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.25rem 1rem;
+    color: #0cb6ff;
+  }
+}
