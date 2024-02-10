@@ -32,6 +32,18 @@ h4 {
   font-weight: 400;
   font-size: 1.35vw;
 }
+.bookCall {
+  background-color: rgb(130,68,255,.3);
+  color: #ffff;
+  padding: 0.8rem 2rem;
+  border-radius: 5rem;
+  border: none;
+  margin: 1.5rem 0 0 0vw;
+}
+.bookCall:hover{
+  cursor: pointer;
+   background-color: rgb(130,68,255,.9);
+}
 .my-names {
   padding: 3rem 0;
   text-align: center;
@@ -60,6 +72,15 @@ h4 {
     font-weight: 400;
     font-size: 2.35vw;
   }
+  .bookCall {
+  background-color: rgb(130,68,255,.3);
+  color: #ffff;
+  padding: 0.8rem 2rem;
+  border-radius: 5rem;
+  border: none;
+  font-size: .65rem;
+  margin: 1.5rem 0 0 0vw;
+}
 }
 @media only screen and (max-width: 768px) {
   .hero-content {
