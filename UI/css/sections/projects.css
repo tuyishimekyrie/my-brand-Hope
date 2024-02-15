@@ -3,11 +3,18 @@
   font-size: 1.2vw;
 }
 
-
 .project-message h4 {
   padding-top: 1.5rem;
   color: #fff;
   font-size: 1vw;
+}
+.markBtn {
+  color: red;
+  cursor: pointer; /
+}
+
+.project-button .markBtn:hover {
+  background: #1e293b; 
 }
 
 @media only screen and (max-width: 768px) {

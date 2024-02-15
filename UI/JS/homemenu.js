@@ -2,6 +2,8 @@ const menu = document.querySelector(".menu-open img");
 const menuLinks = document.querySelector(".menu-links");
 const close = document.querySelector(".menu-close ");
 const header = document.querySelector(".header");
+
+
 menu.addEventListener("click", () => {
   header.classList.toggle("active");
   menuLinks.classList.add("active");

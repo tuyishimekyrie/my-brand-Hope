@@ -19,6 +19,9 @@
 <body>
     <div class="container">
         <div class="sidebar ">
+            <div class="mobile-nav">
+              <img src="../assests/Multiply.png" alt="">
+              </div>
             <div class="logo">
                 <img src="../assests/logo.png" alt="">
             </div>
@@ -61,7 +64,7 @@
  <button class="menu">Menu</button>
         </div>
         <div class="blog-container">
-             <form action="">
+             <form action="" class="formCreate">
                 <h1>Create a blog</h1>
                <div class="inputs">
     <label for="image">Image</label>
@@ -75,11 +78,12 @@
     <label for="description">Description</label>
     <textarea name="description" id="description" cols="30" rows="3" placeholder="Type a description"></textarea>
 </div>
-<button>Create</button>
+<p class="message"></p>
+<button class="createBlog">Create</button>
              </form>
         <div class="scrollable">
         <div class="blogs">
-            <div class="blog">
+            <!-- <div class="blog">
              <div class="content">
                 <h2>The Future of Docker</h2>
                 <div class="btns">
@@ -91,90 +95,9 @@
                 <img src="../assests/what-is-docker.png" alt="">
              </div>
             </div>
-             <div class="blog">
-             <div class="content">
-                <h2>The Future of TypeScript</h2>
-                <div class="btns">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-             </div>
-             <div class="image">
-                <img src="../assests/TS.png" alt="">
-             </div>
-            </div>
-             <div class="blog">
-             <div class="content">
-                <h2>The Future of Google_Cloud_Covered</h2>
-                <div class="btns">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-             </div>
-             <div class="image">
-                <img src="../assests/Google_Cloud_Covered.jpg" alt="">
-             </div>
-            </div>
-             <div class="blog">
-             <div class="content">
-                <h2>The Future of NoSql</h2>
-                <div class="btns">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-             </div>
-             <div class="image">
-                <img src="../assests/nosql-nedir-1.png" alt="">
-             </div>
-            </div>
-             <div class="blog">
-             <div class="content">
-                <h2>The Future of Docker</h2>
-                <div class="btns">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-             </div>
-             <div class="image">
-                <img src="../assests/what-is-docker.png" alt="">
-             </div>
-            </div>
-             <div class="blog">
-             <div class="content">
-                <h2>The Future of Docker</h2>
-                <div class="btns">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-             </div>
-             <div class="image">
-                <img src="../assests/what-is-docker.png" alt="">
-             </div>
-            </div>
-             <div class="blog">
-             <div class="content">
-                <h2>The Future of Docker</h2>
-                <div class="btns">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-             </div>
-             <div class="image">
-                <img src="../assests/what-is-docker.png" alt="">
-             </div>
-            </div>
-            <div class="blog">
-             <div class="content">
-                <h2>The Future of Docker</h2>
-                <div class="btns">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-             </div>
-             <div class="image">
-                <img src="../assests/what-is-docker.png" alt="">
-             </div>
-            </div>
+              -->
+           
+            
         </div>
     </div>
 </div>
@@ -202,7 +125,7 @@
 <button>Update</button>
         </form>
     </div>
-    <script src="../JS/updatemodal.js"></script>
     <script src="../JS/dashboardsidebar.js"></script>
+    <script src="../JS/adminBlogs.js"></script>
 </body>
 </html>

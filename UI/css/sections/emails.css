@@ -19,6 +19,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .emails .email-header span,
 p {
   color: rgb(255, 255, 255, 0.5);
@@ -57,7 +58,7 @@ p {
 }
 @media only screen and (max-width: 768px) {
   .container {
-    height: 100vh;
+    min-height: 100vh;
     background: #0e1227;
   }
   .emails p {

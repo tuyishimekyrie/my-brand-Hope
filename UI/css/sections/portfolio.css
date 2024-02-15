@@ -12,8 +12,12 @@
 .projects {
     z-index:-1;
 }
+.project {
+    width: 40vw;
+    /* border: 1px solid red; */
+}
 .projects-content {
-    /* flex-wrap: wrap */
+    flex-wrap: wrap
 }
 .project .site {
     /* background-color: #312168; */
@@ -47,20 +51,12 @@
     border-radius: 5rem;
     margin: 2rem 0  0 0;
 }
-
+*/
 @media screen and (max-width: 768px) {
-    .ctn img{
-    width: 40vw;
-    height:30vh;
-}
-    .ctn-content button {
-    background-color: #1E1E1E;
-    padding: 1vw 11vw;
-    border: none;
-    font-size: 1r.2em;
-    color: var(--white);
-    border-radius: 5rem;
-    margin: 1rem 0  0 0;
-}
-} */
+ .projects-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+} 
 /* end ofcall to action styles */
