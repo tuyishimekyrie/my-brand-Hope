@@ -8,14 +8,14 @@ const projectSite = document.querySelector(".site");
 const projectsContent = [
   {
     id: 1,
-    img: "../UI/assests/hero.jpeg",
+    img: "./UI/assests/hero.jpeg",
     heading: "Kora Finance Management Application",
     desc: "A centralized dashboard offering an overview of key business metrics, performance indicators, and important alerts. Customizable widgets for users to tailor the dashboard to their specific needs.",
     url: "https://tuyishimekyrie.github.io/my-brand-Hope/index.html",
   },
   {
     id: 2,
-    img: "../UI/assests/project1.png", // Fixed typo here
+    img: "./UI/assests/project1.png", // Fixed typo here
     heading: "Business Management Application",
     desc: "A centralized dashboard offering an overview of key business metrics, performance indicators, and important alerts. Customizable widgets for users to tailor the dashboard to their specific needs.",
     url: "https://tuyishimekyrie.github.io/my-brand-Hope/index.html",
