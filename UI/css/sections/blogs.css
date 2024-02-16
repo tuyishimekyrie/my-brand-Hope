@@ -37,12 +37,22 @@
   padding: 1rem 0;
 }
 .likes {
-  /* border: 1px solid red; */
   display: flex;
   /* align-items: center; */
 }
 .likes img {
   height: 1.5rem;
+  cursor: pointer;
+}
+ .likes img:hover {
+  background-color:#334155;
+  border-radius: 5rem;
+} 
+.likesCounts {
+  background:red;
+}
+.likesCounts:hover {
+  cursor: pointer
 }
 .blog button {
   border: none;

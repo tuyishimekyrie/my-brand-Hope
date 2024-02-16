@@ -9,6 +9,8 @@ function renderEmails(emailsContent) {
     emailMessageText.style.color = "white";
     emailsContainer.appendChild(emailMessageText);
   } else {
+    // Sort emailsContent by date in descending order
+    emailsContent.sort((a, b) => new Date(b.date) - new Date(a.date));
     emailsContent.forEach((content) => {
       const email = document.createElement("div");
       email.classList.add("email");
@@ -20,7 +22,7 @@ function renderEmails(emailsContent) {
       emailSpan.textContent = content.email;
 
       const emailMinutes = document.createElement("p");
-      emailMinutes.textContent = content.minutes;
+      emailMinutes.textContent = content.timeAgo;
 
       emailHeader.appendChild(emailSpan);
       emailHeader.appendChild(emailMinutes);
@@ -50,6 +52,16 @@ function renderEmails(emailsContent) {
       email.appendChild(emailButtons);
 
       emailsContainer.appendChild(email);
+      //  replyButton.addEventListener("click", () => {
+      //    console.log("Clicked");
+      //    var gmailEmail =
+      //      "mailto:" +
+      //      content.email +
+      //      "?subject=Re: " +
+      //      content.subject +
+      //      "&body=";
+      //    window.location.href = gmailEmail;
+      //  });
     });
   }
 }
@@ -62,15 +74,49 @@ function fetchDataAndUpdate() {
   // Parse the retrieved data into an array of objects
   const emailsContent = JSON.parse(storedData) || [];
 
-  // Calculate the "minutes ago" value for each message
+  // Calculate the time difference for each email
   const now = new Date();
   emailsContent.forEach((email) => {
     const messageDate = new Date(email.date);
     const differenceInMilliseconds = now - messageDate;
-    const differenceInMinutes = Math.round(differenceInMilliseconds / 60000); // Convert milliseconds to minutes
-    email.minutes = `${differenceInMinutes} minute${
-      differenceInMinutes !== 1 ? "s" : ""
-    } ago`;
+
+    // Calculate time difference in various units
+    const differenceInSeconds = Math.floor(differenceInMilliseconds / 1000);
+    const differenceInMinutes = Math.floor(differenceInSeconds / 60);
+    const differenceInHours = Math.floor(differenceInMinutes / 60);
+    const differenceInDays = Math.floor(differenceInHours / 24);
+    const differenceInWeeks = Math.floor(differenceInDays / 7);
+    const differenceInMonths = Math.floor(differenceInDays / 30); // Approximation
+    const differenceInYears = Math.floor(differenceInDays / 365); // Approximation
+
+    // Construct the time ago string based on the largest non-zero difference
+    if (differenceInYears > 0) {
+      email.timeAgo = `${differenceInYears} year${
+        differenceInYears !== 1 ? "s" : ""
+      } ago`;
+    } else if (differenceInMonths > 0) {
+      email.timeAgo = `${differenceInMonths} month${
+        differenceInMonths !== 1 ? "s" : ""
+      } ago`;
+    } else if (differenceInWeeks > 0) {
+      email.timeAgo = `${differenceInWeeks} week${
+        differenceInWeeks !== 1 ? "s" : ""
+      } ago`;
+    } else if (differenceInDays > 0) {
+      email.timeAgo = `${differenceInDays} day${
+        differenceInDays !== 1 ? "s" : ""
+      } ago`;
+    } else if (differenceInHours > 0) {
+      email.timeAgo = `${differenceInHours} hour${
+        differenceInHours !== 1 ? "s" : ""
+      } ago`;
+    } else if (differenceInMinutes > 0) {
+      email.timeAgo = `${differenceInMinutes} minute${
+        differenceInMinutes !== 1 ? "s" : ""
+      } ago`;
+    } else {
+      email.timeAgo = "Just now";
+    }
   });
 
   console.log(emailsContent);

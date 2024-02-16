@@ -12,8 +12,7 @@ const Users = document.querySelector(".users");
 // Function to render emails on the UI
 function renderUsers(usersContent) {
   const emailsContainer = document.querySelector(".users");
-  emailsContainer.innerHTML = ""; // Clear previous emails
-
+  emailsContainer.innerHTML = ""; 
   if (usersContent.length === 0) {
     const emailMessageText = document.createElement("h1");
     emailMessageText.textContent = "NO USERS";

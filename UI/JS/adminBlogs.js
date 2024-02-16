@@ -1,5 +1,4 @@
 const blogs = document.querySelector(".blogs");
-
 const formCreate = document.querySelector(".formCreate");
 const imageInput = document.getElementById("image");
 const headInput = document.getElementById("title");
@@ -27,16 +26,35 @@ btnCreate.addEventListener("click", (e) => {
         const base64Image = event.target.result;
 
         // Create the blog data object with the base64-encoded image
-        const blogData = {
-          id: Date.now(),
-          img: base64Image,
-          header: headInput.value,
-          desc: descInput.value,
-          likesCount: 0, // Assuming initial likes count is 0
-          commentsCount: 0, // Assuming initial comments count is 0
-          readMoreURL: "./Blog.html", // Assuming the read more URL is fixed
-        };
+        // const blogData = {
+        //   id: Date.now(),
+        //   img: base64Image,
+        //   header: headInput.value,
+        //   desc: descInput.value,
+        //   commentsCount: 0, // Assuming initial comments count is 0
+        // };
+        const blogData = 
+          {
+            id: Date.now(),
+            readMoreURL: "./Blog.html", // Assuming the read more URL is fixed
+            img: base64Image,
+            likesCount: 0, // Assuming initial likes count is 0
+            header: headInput.value,
+            desc: descInput.value,
+            commentsCount: 1,
+            comments: [
+              {
+                commenterName: "Tuyishime Hope",
+                comment:
+                  "Thanks to the emergence of Docker, we'll harness its capabilities to enhance software shipping and streamline the development process.",
+                date: "2024-01-02",
+                time: "12:34:23",
+              },
+            ],
+          }
+        
 
+        console.log(blogData);
         // Push the new blog data to the blogsContent array
         blogsContent.push(blogData);
 
@@ -56,14 +74,13 @@ btnCreate.addEventListener("click", (e) => {
       reader.readAsDataURL(file);
     }
   } else {
-   setTimeout(() => {
-     message.innerHTML = "";
-   }, 3000);
-   message.innerHTML = "Please Fill the fields";
-   message.style.color = "#b91c1c";
+    setTimeout(() => {
+      message.innerHTML = "";
+    }, 3000);
+    message.innerHTML = "Please Fill the fields";
+    message.style.color = "#b91c1c";
   }
 });
-
 
 // Function to render blogs
 function renderBlogs(blogsContent) {
@@ -97,20 +114,20 @@ function renderBlogs(blogsContent) {
       blogImageContainer.appendChild(blogImage);
       blog.appendChild(blogImageContainer);
       blogButtonDelete.addEventListener("click", () => {
-       const storedData = localStorage.getItem("blogsContent");
+        const storedData = localStorage.getItem("blogsContent");
 
-       // Parse the retrieved data into an array of objects
-       let blogsContent = JSON.parse(storedData) || [];
+        // Parse the retrieved data into an array of objects
+        let blogsContent = JSON.parse(storedData) || [];
 
-       // Filter out the item to be deleted
-       blogsContent = blogsContent.filter((user) => user.id !== content.id);
+        // Filter out the item to be deleted
+        blogsContent = blogsContent.filter((user) => user.id !== content.id);
 
-       // Update localStorage with the modified array
+        // Update localStorage with the modified array
         localStorage.setItem("blogsContent", JSON.stringify(blogsContent));
         renderBlogs(blogsContent);
 
-       console.log("Blog deleted successfully."); 
-      })
+        console.log("Blog deleted successfully.");
+      });
 
       const updateBtn = document.querySelector(".updateBtn");
       const updateModal = document.querySelector(".modal");
@@ -124,8 +141,8 @@ function renderBlogs(blogsContent) {
         updateModal.classList.remove("active");
       });
       blogButtonUpdate.addEventListener("click", () => {
-        console.log("clicked")
-      })
+        console.log("clicked");
+      });
 
       blogs.appendChild(blog);
     });
@@ -137,7 +154,9 @@ window.onload = function () {
   // Retrieve and render existing blogs from localStorage
   const storedBlogsContent = JSON.parse(localStorage.getItem("blogsContent"));
   if (storedBlogsContent) {
-    renderBlogs();
+    // console.log("loaded");
+    // console.log(storedBlogsContent);
+    renderBlogs(storedBlogsContent);
     // setInterval(renderBlogs,2000)
   }
 };

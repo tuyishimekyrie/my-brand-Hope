@@ -10,7 +10,7 @@
 }
 .scrollable {
   overflow: scroll;
-  min-height: 100vh;
+  height: 100%;
 }
 .user-header {
   display: flex;

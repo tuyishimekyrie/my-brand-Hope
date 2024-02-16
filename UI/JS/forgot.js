@@ -16,101 +16,71 @@ buttonSignIn.addEventListener(
     };
     const usersData = localStorage.getItem("userCredentials");
     const data = JSON.parse(usersData);
-    if (
-      loginCredentials.email !== "" ||
-      loginCredentials.password !== "" ||
-      loginCredentials.confirmPassword !== ""
-    ) {
-      if (data) {
-        for (const user of data) {
-          if (user.email === loginCredentials.email) {
-            if (
-              loginCredentials.password !== loginCredentials.confirmPassword
-            ) {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value)) {
+      message.innerHTML = "Please enter a valid email address";
+      message.style.color = "#FF0000";
+      setTimeout(() => {
+        message.innerHTML = "";
+      }, 3000);
+    } else {
+      if (
+        loginCredentials.email !== "" ||
+        loginCredentials.password !== "" ||
+        loginCredentials.confirmPassword !== ""
+      ) {
+        if (data) {
+          for (const user of data) {
+            if (user.email === loginCredentials.email) {
+              if (
+                loginCredentials.password !== loginCredentials.confirmPassword
+              ) {
+                setTimeout(() => {
+                  message.innerHTML = "";
+                }, 2000);
+
+                message.innerHTML = "Password Doesn't Match";
+                message.style.color = "#dc2626";
+              }
+              // authenticated = true;
+              setTimeout(() => {
+                message.innerHTML = "";
+                window.location.href = "../pages/login.html";
+              }, 1000);
+              user.password = loginCredentials.password;
+              user.confirmPassword = loginCredentials.confirmPassword;
+
+              message.innerHTML = "Password Updated";
+              message.style.color = "#10b981";
+              emailInput.value = "";
+              passwordInput.value = "";
+              loginCredentials.confirmPassword = "";
+              console.log("Email Exists");
+              console.log(data);
+              break;
+            } else {
               setTimeout(() => {
                 message.innerHTML = "";
               }, 2000);
 
-              message.innerHTML = "Password Doesn't Match";
+              message.innerHTML = "User Doesn't Exist, Try Again";
               message.style.color = "#dc2626";
             }
             // authenticated = true;
-            setTimeout(() => {
-              message.innerHTML = "";
-              window.location.href="../pages/login.html"
-            }, 1000);
-            user.password = loginCredentials.password;
-            user.confirmPassword = loginCredentials.confirmPassword;
-
-            message.innerHTML = "Password Updated";
-            message.style.color = "#10b981";
-            emailInput.value = "";
-            passwordInput.value = "";
-            loginCredentials.confirmPassword = "";
-            console.log("Email Exists");
-            console.log(data);
-            break;
-          } else {
-            setTimeout(() => {
-              message.innerHTML = "";
-            }, 2000);
-
-            message.innerHTML = "User Doesn't Exist, Try Again";
-            message.style.color = "#dc2626";
           }
-          // authenticated = true;
         }
-      }
-    } else {
-      setTimeout(() => {
-        message.innerHTML = "";
-      }, 2000);
+      } else {
+        setTimeout(() => {
+          message.innerHTML = "";
+        }, 2000);
 
-      message.innerHTML = "Please fill the fields";
-      message.style.color = "#dc2626";
+        message.innerHTML = "Please fill the fields";
+        message.style.color = "#dc2626";
+      }
     }
   }
   // console.log(loginCredentials)
   // console.log(data)
 );
-//   let authenticated = false;
 
-//   if (data) {
-//     for (const user of data) {
-//       if (
-//         user.email === loginCredentials.email &&
-//         user.password === loginCredentials.password
-//       ) {
-//         authenticated = true;
-//         break;
-//       }
-//     }
-
-//     if (authenticated) {
-//       setTimeout(() => {
-//           message.innerHTML = "";
-//         window.location.href = "../pages/HomeDashboard.html";
-//       }, 1000);
-
-//       message.innerHTML = "Logged in Successfully";
-//       message.style.color = "#1e40af";
-//       // Clear input fields after checking credentials
-//       emailInput.value = "";
-//       passwordInput.value = "";
-//     } else {
-//       setTimeout(() => {
-//         message.innerHTML = "";
-//       }, 2000);
-
-//       message.innerHTML = "User Not Found, Try again";
-//       message.style.color = "#dc2626";
-//     }
-//   } else {
-//     setTimeout(() => {
-//       message.innerHTML = "";
-//     }, 2000);
-//     // If no data is found in localStorage
-//     message.innerHTML = "No user data found";
-//     message.style.color = "#dc2626";
-//   }
-// });

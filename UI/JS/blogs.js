@@ -67,7 +67,7 @@ window.onload = function () {
 
     const proDesc = document.createElement("p");
     proDesc.classList = "blogDesc";
-    proDesc.textContent = content.desc; // Set description text
+    proDesc.textContent = truncateText(content.desc, 20);
 
     const proFeatures = document.createElement("div");
     proFeatures.classList = "features";
@@ -87,7 +87,7 @@ window.onload = function () {
     proComments.classList = "likes";
     const commentsCount = document.createElement("p");
     commentsCount.classList = "commentsCount";
-    commentsCount.textContent = content.commentsCount;
+    commentsCount.textContent = content.comments.length;
     const commentsLogo = document.createElement("img");
     commentsLogo.classList = "commentsLogo";
     commentsLogo.src = "../assests/Topic.png";
@@ -100,10 +100,20 @@ window.onload = function () {
     const proSite = document.createElement("a");
     proSite.classList = "readMore";
     proSite.href = content.readMoreURL;
+    proSite.setAttribute("href", content.readMoreURL); // Set href attribute
+    // proSite.setAttribute("target", "_blank");
     const button = document.createElement("button");
     button.classList = "login";
     button.textContent = "Read More";
     proSite.appendChild(button);
+
+    // Add event listener to the entire blog post
+    pro.addEventListener("click", () => {
+      // Store the clicked blog's id in localStorage
+      localStorage.setItem("clickedBlogId", content.id);
+      // Redirect to the specified blog URL
+      // window.location.href = content.readMoreURL;
+    });
 
     pro.appendChild(proImg);
     pro.appendChild(proHeading);
@@ -113,15 +123,46 @@ window.onload = function () {
 
     blogs.appendChild(pro);
 
-   likesLogo.addEventListener("click", () => {
-     // Increment the likes count
-     blogsContent[index].likesCount++;
+    // Function to truncate text to specified number of words
+    function truncateText(text, numWords) {
+      const words = text.split(" ");
+      if (words.length > numWords) {
+        return words.slice(0, numWords).join(" ") + "...";
+      }
+      return text;
+    }
+  });
+  // Attach event listener outside the loop
+  const likesLogos = document.querySelectorAll(".likesLogo");
+  likesLogos.forEach((likesLogo, index) => {
+    likesLogo.addEventListener("click", () => {
+      // Toggle the like state
+      if (!blogsContent[index].liked) {
+        // Increment the likes count
+        blogsContent[index].likesCount++;
+        blogsContent[index].liked = true;
+      } else {
+        // Decrement the likes count
+        blogsContent[index].likesCount--;
+        blogsContent[index].liked = false;
+      }
 
-     // Update the likes count in localStorage
-     localStorage.setItem("blogsContent", JSON.stringify(blogsContent));
+      // Update the likes count in localStorage
+      localStorage.setItem("blogsContent", JSON.stringify(blogsContent));
 
-     // Update the UI to reflect the new likes count
-     likesCount.textContent = blogsContent[index].likesCount;
-   });
+      // Update the UI to reflect the new likes count and state
+      const likesCount = likesLogo.parentElement.querySelector(".likesCount");
+      likesCount.textContent = blogsContent[index].likesCount;
+
+      // Update the like button appearance based on the state
+      likesLogo.src = blogsContent[index].liked
+        ? "../assests/Facebook Like.png"
+        : "../assests/Facebook like.png";
+
+      console.log("Clicked");
+    });
   });
 };
+
+
+
