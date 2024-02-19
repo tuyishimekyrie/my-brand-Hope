@@ -2,7 +2,9 @@ const sidebar = document.querySelector(".sidebar");
 const nav = document.querySelector(".mobile-nav img");
 const navClose = document.querySelector(".mobile-nav ");
 const menu = document.querySelector(".menu");
+const logoutBtn = document.querySelector(".logout");
 
+console.log(logoutBtn)
 // Dashboard Cards
 
 const userCount = document.querySelector(".row2 p");
@@ -41,4 +43,20 @@ menu.addEventListener("click", () => {
 nav.addEventListener("click", () => {
   sidebar.classList.remove("active");
   navClose.style.display = "hidden";
+});
+
+logoutBtn.addEventListener("click", () => {
+  const usersCred = localStorage.getItem("userCredentials");
+  const data = JSON.parse(usersCred);
+  if (data) {
+    for (const userData of data) {
+      if (userData.authenticated) {
+        userData.authenticated = false;
+        localStorage.setItem("userCredentials", JSON.stringify(data));
+        break; // Exit loop once the authenticated user is found and updated
+      }
+    }
+  
+  }
+  console.log(data);
 });

@@ -6,6 +6,8 @@ const descInput = document.getElementById("description");
 const message = document.querySelector(".message");
 const btnCreate = document.querySelector(".createBlog");
 
+const updateForm = document.querySelector(".formUpdate");
+
 btnCreate.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -33,26 +35,24 @@ btnCreate.addEventListener("click", (e) => {
         //   desc: descInput.value,
         //   commentsCount: 0, // Assuming initial comments count is 0
         // };
-        const blogData = 
-          {
-            id: Date.now(),
-            readMoreURL: "./Blog.html", // Assuming the read more URL is fixed
-            img: base64Image,
-            likesCount: 0, // Assuming initial likes count is 0
-            header: headInput.value,
-            desc: descInput.value,
-            commentsCount: 1,
-            comments: [
-              {
-                commenterName: "Tuyishime Hope",
-                comment:
-                  "Thanks to the emergence of Docker, we'll harness its capabilities to enhance software shipping and streamline the development process.",
-                date: "2024-01-02",
-                time: "12:34:23",
-              },
-            ],
-          }
-        
+        const blogData = {
+          id: Date.now(),
+          readMoreURL: "./Blog.html", // Assuming the read more URL is fixed
+          img: base64Image,
+          likesCount: 0, // Assuming initial likes count is 0
+          header: headInput.value,
+          desc: descInput.value,
+          commentsCount: 1,
+          comments: [
+            {
+              commenterName: "Tuyishime Hope",
+              comment:
+                "Thanks to the emergence of Docker, we'll harness its capabilities to enhance software shipping and streamline the development process.",
+              date: "2024-01-02",
+              time: "12:34:23",
+            },
+          ],
+        };
 
         console.log(blogData);
         // Push the new blog data to the blogsContent array
@@ -98,14 +98,14 @@ function renderBlogs(blogsContent) {
       blogContent.appendChild(blogHeading);
       const btns = document.createElement("div");
       btns.classList = "btns";
-      const blogButtonUpdate = document.createElement("button");
-      blogButtonUpdate.classList.add("updateBtn");
-      blogButtonUpdate.textContent = "Update";
+      // const blogButtonUpdate = document.createElement("button");
+      // blogButtonUpdate.classList.add("updateBtn");
+      // blogButtonUpdate.textContent = "Update";
       const blogButtonDelete = document.createElement("button");
       blogButtonDelete.classList = "deleteBtn";
       blogButtonDelete.textContent = "Delete";
       blogContent.appendChild(btns);
-      btns.appendChild(blogButtonUpdate);
+      // btns.appendChild(blogButtonUpdate);
       btns.appendChild(blogButtonDelete);
       const blogImageContainer = document.createElement("div");
       blogImageContainer.classList = "image";
@@ -133,19 +133,66 @@ function renderBlogs(blogsContent) {
       const updateModal = document.querySelector(".modal");
       const closeModal = document.querySelector(".close");
 
-      blogButtonUpdate.addEventListener("click", () => {
-        updateModal.classList.add("active");
-      });
+      // blogButtonUpdate.addEventListener("click", () => {
+      //   updateModal.classList.add("active");
+      // });
 
       closeModal.addEventListener("click", () => {
         updateModal.classList.remove("active");
       });
-      blogButtonUpdate.addEventListener("click", () => {
-        console.log("clicked");
-      });
 
       blogs.appendChild(blog);
+      // Define event listener for blogButtonUpdate outside of forEach loop
+      // blogButtonUpdate.addEventListener("click", () => {
+      //   updateModal.classList.add("active");
+
+      //   // Get the ID of the specific blog associated with the update button
+      //   const blogId = content.id;
+
+      //   // Find the specific blog in the blogsContent array using its ID
+      //   const specificBlogIndex = blogsContent.findIndex(
+      //     (blog) => blog.id === blogId
+      //   );
+
+      //   // Ensure that the specific blog is found in the blogsContent array
+      //   if (specificBlogIndex !== -1) {
+      //     const specificBlog = blogsContent[specificBlogIndex];
+
+      //     // Populate the modal inputs with the current values of the specific blog
+      //     const UpdateImageInput = document.getElementById("image");
+      //     const UpdateTitleInput = document.getElementById("title");
+      //     const UpdateDescInput = document.getElementById("description");
+
+      //     // Display a preview of the image instead of setting the value directly
+      //     const imgPreview = document.getElementById("image");
+      //     imgPreview.src = specificBlog.img;
+
+      //     // Set the title and description values
+      //     UpdateTitleInput.value = specificBlog.header;
+      //     UpdateDescInput.value = specificBlog.desc;
+
+      //     // Store the current values in data attributes for comparison later
+      //     UpdateImageInput.setAttribute(
+      //       "data-previous-value",
+      //       specificBlog.img
+      //     );
+      //     UpdateTitleInput.setAttribute(
+      //       "data-previous-value",
+      //       specificBlog.header
+      //     );
+      //     UpdateDescInput.setAttribute(
+      //       "data-previous-value",
+      //       specificBlog.desc
+      //     );
+      //   } else {
+      //     console.error("Specific blog not found in blogsContent.");
+      //   }
+      // });
+      // Define event listener for blogButtonUpdate outside of forEach loop
+      // Define event listener for blogButtonUpdate outside of forEach loop
     });
+
+    // Now continue with the rest of your code...
   }
 }
 

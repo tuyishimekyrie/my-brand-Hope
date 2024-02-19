@@ -42,6 +42,7 @@ buttonSignUp.addEventListener("click", (e) => {
       password: passwordInput.value,
       confirmPassword: cpasswordInput.value,
       date: new Date().toISOString(),
+      authenticated: false,
     };
 
     // Retrieve existing data from localStorage or initialize an empty array if no data exists

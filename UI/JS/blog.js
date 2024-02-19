@@ -1,33 +1,3 @@
-// Assuming you have an array of blog content objects
-// const blogsContent = [
-//   {
-//     imgSrc: "../assests/what-is-docker.png",
-//     header: "The future of Docker",
-//     desc: "Docker revolutionizes software deployment through containerization, encapsulating applications and dependencies for seamless portability. The Docker Engine orchestrates container creation, offering developers a standardized, reproducible environment. Docker's future lies in enhanced cloud integration, heightened security, and optimized resource utilization. It continues to be a pivotal force in modern application deployment, ensuring consistency across diverse environments while adapting to evolving industry demands.",
-//     likesCount: 10,
-//     commentsCount: 10,
-//     comments: [
-//       {
-//         commenterName: "Tuyishime Hope",
-//         comment:
-//           "Thanks to the emergence of Docker, we'll harness its capabilities to enhance software shipping and streamline the development process.",
-//         date: "2024-01-02",
-//         time: "12:34:23",
-//       },
-//       {
-//         commenterName: "Tuyishime Hope",
-//         comment:
-//           "Thanks to the emergence of Docker, we'll harness its capabilities to enhance software shipping and streamline the development process.",
-//         date: "2024-01-02",
-//         time: "12:34:23",
-//       },
-//     ],
-//   },
-// ];
-// I want to get akey in local storate called clickedBlogID
-// and compare to
-// I want to get akey in local storate called blogscontent
-// so that it can render items from localstorage
 window.onload = function () {
   const articlesContainer = document.querySelector(".articles");
 
@@ -41,7 +11,10 @@ window.onload = function () {
   const specificBlog = storedBlogsContent.find(
     (blog) => blog.id == clickedBlogID
   );
-  console.log(specificBlog.comments.length);
+  console.log(specificBlog);
+  const userData = localStorage.getItem("userCredentials");
+  const users = JSON.parse(userData);
+
   if (specificBlog) {
     // Create and append article element for the specific blog
     const article = document.createElement("div");
@@ -129,16 +102,22 @@ window.onload = function () {
             storedBlogsContent[specificBlogIndex].comments = []; // Initialize comments array if it doesn't exist
           }
 
-          // Create a new comment object
-          const newComment = {
-            commenterName: "User", // Assuming the commenter's name is fixed for now
-            comment: commentText,
-            date: getCurrentDate().split(" ")[0], // Get current date
-            time: getCurrentDate().split(" ")[1], // Get current time
-          };
+          if (users) {
+            for (const user of users) {
+              if (user.authenticated) {
+                // Create a new comment object
+                const newComment = {
+                  commenterName: user.authenticated ? `${user.names}` : "User", // Assuming the commenter's name is fixed for now
+                  comment: commentText,
+                  date: getCurrentDate().split(" ")[0], // Get current date
+                  time: getCurrentDate().split(" ")[1], // Get current time
+                };
 
-          // Add the new comment to the specific blog's comments array
-          storedBlogsContent[specificBlogIndex].comments.push(newComment);
+                // Add the new comment to the specific blog's comments array
+                storedBlogsContent[specificBlogIndex].comments.push(newComment);
+              }
+            }
+          }
 
           // Save the updated blogsContent back to local storage
           localStorage.setItem(
@@ -146,8 +125,11 @@ window.onload = function () {
             JSON.stringify(storedBlogsContent)
           );
 
-          // Create a new comment element to display the comment in the UI (if needed)
-          // This step depends on how you want to dynamically render comments in the UI
+          // Render all comments
+          renderComments(
+            storedBlogsContent[specificBlogIndex].comments,
+            commentsSectionDiv
+          );
 
           // Clear the comment input field
           commentInput.value = "";
@@ -159,30 +141,13 @@ window.onload = function () {
       }
     });
 
-    // Function to get current date and time
-    function getCurrentDate() {
-      const date = new Date();
+    // Function to render all comments
+    function renderComments(comments, commentsSectionDiv) {
+      // Clear previous comments
+      commentsSectionDiv.innerHTML = "";
 
-      // Get the current date and time components
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0"); // Add leading zero if necessary
-      const day = String(date.getDate()).padStart(2, "0"); // Add leading zero if necessary
-      const hours = String(date.getHours()).padStart(2, "0"); // Add leading zero if necessary
-      const minutes = String(date.getMinutes()).padStart(2, "0"); // Add leading zero if necessary
-      const seconds = String(date.getSeconds()).padStart(2, "0"); // Add leading zero if necessary
-
-      // Construct the date and time string in the desired format
-      const formattedDate = `${year}-${month}-${day}`;
-      const formattedTime = `${hours}:${minutes}:${seconds}`;
-
-      // Return the formatted date and time
-      return `${formattedDate} ${formattedTime}`;
-    }
-
-    const commentsSectionDiv = document.createElement("div");
-    commentsSectionDiv.classList.add("comments-section");
-    if (specificBlog.comments) {
-      specificBlog.comments.forEach((comment) => {
+      // Iterate over all comments and create DOM elements for each comment
+      comments.forEach((comment) => {
         const commentedDiv = document.createElement("div");
         commentedDiv.classList.add("commented");
         const commenterDiv = document.createElement("div");
@@ -209,6 +174,14 @@ window.onload = function () {
         commentsSectionDiv.appendChild(commentedDiv);
       });
     }
+
+    const commentsSectionDiv = document.createElement("div");
+    commentsSectionDiv.classList.add("comments-section");
+    if (specificBlog.comments) {
+      // Render all existing comments
+      renderComments(specificBlog.comments, commentsSectionDiv);
+    }
+
     const readMoreLink = document.createElement("a");
     readMoreLink.href = "./Blogs.html";
     const readMoreButton = document.createElement("button");
@@ -262,3 +235,23 @@ window.onload = function () {
     }
   });
 };
+
+// Function to get current date and time
+function getCurrentDate() {
+  const date = new Date();
+
+  // Get the current date and time components
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Add leading zero if necessary
+  const day = String(date.getDate()).padStart(2, "0"); // Add leading zero if necessary
+  const hours = String(date.getHours()).padStart(2, "0"); // Add leading zero if necessary
+  const minutes = String(date.getMinutes()).padStart(2, "0"); // Add leading zero if necessary
+  const seconds = String(date.getSeconds()).padStart(2, "0"); // Add leading zero if necessary
+
+  // Construct the date and time string in the desired format
+  const formattedDate = `${year}-${month}-${day}`;
+  const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+  // Return the formatted date and time
+  return `${formattedDate} ${formattedTime}`;
+}
