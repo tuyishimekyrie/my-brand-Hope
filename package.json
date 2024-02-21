@@ -1,0 +1,12 @@
+{
+  "name": "mybrand",
+  "version": "1.0.0",
+  "description": "![portfolio-image](https://github.com/tuyishimekyrie/my-brand-Hope/assets/85252664/3c1a8f16-1a6b-41f5-be5d-a200665ec80d)\r # MY-BRAND-HOPE\r ---------------\r This is a portfolio website called my brand hope.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

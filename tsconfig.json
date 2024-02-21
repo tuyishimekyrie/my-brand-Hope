@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
+    "outDir": "./UI/JS", // Specify the output directory for compiled JavaScript files
+    "rootDir": "./UI/src", // Specify the root directory for TypeScript source files
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["./UI/src/**/*.ts"], // Update the include path to match your project structure
+  "exclude": ["node_modules", "./UI/JS"] // Exclude the output directory
+}
