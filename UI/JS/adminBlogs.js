@@ -203,47 +203,7 @@ function renderBlogs(blogsContent) {
       });
       blogscont.appendChild(blog);
 
-      // Define event listener for blogButtonUpdate outside of forEach loop
-      // blogButtonUpdate.addEventListener("click", () => {
-      //   updateModal.classList.add("active");
-      //   // Get the ID of the specific blog associated with the update button
-      //   const blogId = content.id;
-      //   // Find the specific blog in the blogsContent array using its ID
-      //   const specificBlogIndex = blogsContent.findIndex(
-      //     (blog) => blog.id === blogId
-      //   );
-      //   // Ensure that the specific blog is found in the blogsContent array
-      //   if (specificBlogIndex !== -1) {
-      //     const specificBlog = blogsContent[specificBlogIndex];
-      //     // Populate the modal inputs with the current values of the specific blog
-      //     const UpdateImageInput = document.getElementById("image");
-      //     const UpdateTitleInput = document.getElementById("title");
-      //     const UpdateDescInput = document.getElementById("description");
-      //     // Display a preview of the image instead of setting the value directly
-      //     const imgPreview = document.getElementById("image");
-      //     imgPreview.src = specificBlog.img;
-      //     // Set the title and description values
-      //     UpdateTitleInput.value = specificBlog.header;
-      //     UpdateDescInput.value = specificBlog.desc;
-      //     // Store the current values in data attributes for comparison later
-      //     UpdateImageInput.setAttribute(
-      //       "data-previous-value",
-      //       specificBlog.img
-      //     );
-      //     UpdateTitleInput.setAttribute(
-      //       "data-previous-value",
-      //       specificBlog.header
-      //     );
-      //     UpdateDescInput.setAttribute(
-      //       "data-previous-value",
-      //       specificBlog.desc
-      //     );
-      //   } else {
-      //     console.error("Specific blog not found in blogsContent.");
-      //   }
-      // });
-      // Define event listener for blogButtonUpdate outside of forEach loop
-      // Define event listener for blogButtonUpdate outside of forEach loop
+     
     });
     // Now continue with the rest of your code...
   }

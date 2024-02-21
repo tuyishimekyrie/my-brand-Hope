@@ -90,11 +90,12 @@ window.onload = function () {
         // Retrieve blogsContent from local storage
         const storedBlogsContent =
           JSON.parse(localStorage.getItem("blogsContent")) || [];
-
-        // Find the specific blog based on clickedBlogID
-        const specificBlogIndex = storedBlogsContent.findIndex(
-          (blog) => blog.id == clickedBlogID
-        );
+          
+          // Find the specific blog based on clickedBlogID
+          const specificBlogIndex = storedBlogsContent.findIndex(
+            (blog) => blog.id == clickedBlogID
+            );
+            console.log(specificBlogIndex)
 
         if (specificBlogIndex !== -1) {
           // Ensure that the specific blog object exists
