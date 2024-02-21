@@ -44,5 +44,5 @@ btnSubmit.addEventListener("click", (e) => {
     email.value = "";
     message.value = "";
   }
-  console.log(contactData);
+  // console.log(contactData);
 });
