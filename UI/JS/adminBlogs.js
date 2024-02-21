@@ -1,32 +1,25 @@
-const blogs = document.querySelector(".blogs");
-const formCreate = document.querySelector(".formCreate");
-const imageInput = document.getElementById("image");
-const headInput = document.getElementById("title");
-const descInput = document.getElementById("description");
-const message = document.querySelector(".message");
-const btnCreate = document.querySelector(".createBlog");
-
-const updateForm = document.querySelector(".formUpdate");
-
-btnCreate.addEventListener("click", (e) => {
+var blogscont = document.querySelector(".blogs");
+var formCreate = document.querySelector(".formCreate");
+var imageInput = document.getElementById("image");
+var headInput = document.getElementById("title");
+var descInput = document.getElementById("description");
+var messagesContent = document.querySelector(".message");
+var btnCreate = document.querySelector(".createBlog");
+var updateForm = document.querySelector(".formUpdate");
+btnCreate.addEventListener("click", function (e) {
   e.preventDefault();
-
   // Retrieve existing blogs content from localStorage or initialize an empty array
-  let blogsContent = JSON.parse(localStorage.getItem("blogsContent")) || [];
-
+  var blogsContent = JSON.parse(localStorage.getItem("blogsContent")) || [];
   if (headInput.value !== "" || descInput.value !== "") {
     // Get the image file selected by the user
-    const file = imageInput.files[0];
-
+    var file = imageInput.files[0];
     if (file) {
       // Create a new FileReader object
-      const reader = new FileReader();
-
+      var reader = new FileReader();
       // Event listener for when the FileReader finishes reading the file
       reader.onload = function (event) {
         // Get the base64-encoded string from the FileReader result
-        const base64Image = event.target.result;
-
+        var base64Image = event.target.result;
         // Create the blog data object with the base64-encoded image
         // const blogData = {
         //   id: Date.now(),
@@ -35,7 +28,7 @@ btnCreate.addEventListener("click", (e) => {
         //   desc: descInput.value,
         //   commentsCount: 0, // Assuming initial comments count is 0
         // };
-        const blogData = {
+        var blogData = {
           id: Date.now(),
           readMoreURL: "./Blog.html", // Assuming the read more URL is fixed
           img: base64Image,
@@ -53,124 +46,185 @@ btnCreate.addEventListener("click", (e) => {
             },
           ],
         };
-
         console.log(blogData);
         // Push the new blog data to the blogsContent array
         blogsContent.push(blogData);
-
         // Save the updated blogsContent array to localStorage
         localStorage.setItem("blogsContent", JSON.stringify(blogsContent));
-
         // Clear the form fields after submission
         imageInput.value = "";
         headInput.value = "";
         descInput.value = "";
-
         // Render the updated blogs immediately
         renderBlogs(blogsContent);
       };
-
       // Read the image file as a data URL (base64-encoded string)
       reader.readAsDataURL(file);
     }
   } else {
-    setTimeout(() => {
-      message.innerHTML = "";
+    setTimeout(function () {
+      messagesContent.innerHTML = "";
     }, 3000);
-    message.innerHTML = "Please Fill the fields";
-    message.style.color = "#b91c1c";
+    messagesContent.innerHTML = "Please Fill the fields";
+    messagesContent.style.color = "#b91c1c";
   }
 });
-
 // Function to render blogs
 function renderBlogs(blogsContent) {
   // Clear existing blogs before rendering
-  blogs.innerHTML = "";
+  blogscont.innerHTML = "";
   if (blogsContent) {
-    blogsContent.forEach((content) => {
-      const blog = document.createElement("div");
-      blog.classList = "blog";
-      const blogContent = document.createElement("div");
-      blogContent.classList = "content";
+    blogsContent.forEach(function (content) {
+      var blog = document.createElement("div");
+      blog.classList.add("blog");
+      var blogContent = document.createElement("div");
+      blogContent.classList.add("content");
       blog.appendChild(blogContent);
-      const blogHeading = document.createElement("h2");
+      var blogHeading = document.createElement("h2");
       blogHeading.textContent = content.header;
       blogContent.appendChild(blogHeading);
-      const btns = document.createElement("div");
-      btns.classList = "btns";
-      // const blogButtonUpdate = document.createElement("button");
-      // blogButtonUpdate.classList.add("updateBtn");
-      // blogButtonUpdate.textContent = "Update";
-      const blogButtonDelete = document.createElement("button");
-      blogButtonDelete.classList = "deleteBtn";
+      var btns = document.createElement("div");
+      btns.classList.add("btns");
+      var blogButtonUpdate = document.createElement("button");
+      blogButtonUpdate.classList.add("updateBtn");
+      blogButtonUpdate.textContent = "Update";
+      var blogButtonDelete = document.createElement("button");
+      blogButtonDelete.classList.add("deleteBtn");
       blogButtonDelete.textContent = "Delete";
       blogContent.appendChild(btns);
-      // btns.appendChild(blogButtonUpdate);
+      btns.appendChild(blogButtonUpdate);
       btns.appendChild(blogButtonDelete);
-      const blogImageContainer = document.createElement("div");
-      blogImageContainer.classList = "image";
-      const blogImage = document.createElement("img");
+      var blogImageContainer = document.createElement("div");
+      blogImageContainer.classList.add("image");
+      var blogImage = document.createElement("img");
       blogImage.src = content.img;
       blogImageContainer.appendChild(blogImage);
       blog.appendChild(blogImageContainer);
-      blogButtonDelete.addEventListener("click", () => {
-        const storedData = localStorage.getItem("blogsContent");
-
+      blogButtonDelete.addEventListener("click", function () {
+        var storedData = localStorage.getItem("blogsContent");
         // Parse the retrieved data into an array of objects
-        let blogsContent = JSON.parse(storedData) || [];
-
+        var blogsContent = JSON.parse(storedData) || [];
         // Filter out the item to be deleted
-        blogsContent = blogsContent.filter((user) => user.id !== content.id);
-
+        blogsContent = blogsContent.filter(function (user) {
+          return user.id !== content.id;
+        });
         // Update localStorage with the modified array
         localStorage.setItem("blogsContent", JSON.stringify(blogsContent));
         renderBlogs(blogsContent);
-
         console.log("Blog deleted successfully.");
       });
+      var updateBtn = document.querySelector(".updateBtn");
+      var updateModal = document.querySelector(".modal");
+      var closeModal = document.querySelector(".close");
+      blogButtonUpdate.addEventListener("click", () => {
+        updateModal.classList.add("active");
+        console.log(content.id);
+        const UpdateImageInput = document.getElementById("images");
+        const UpdateTitleInput = document.getElementById("titles");
+        const UpdateDescInput = document.getElementById("descriptions");
+        const submitBtn = document.querySelector(".submitBtn");
+        submitBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const blogId = content.id;
+          // Find the specific blog in the blogsContent array using its ID
+          const specificBlogIndex = blogsContent.findIndex(
+            (blog) => blog.id === blogId
+          );
+          if (specificBlogIndex !== -1) {
+            const specificBlog = blogsContent[specificBlogIndex];
+            // Check if input values are provided, if not, use previous values
+            const updatedHeader =
+              UpdateTitleInput.value !== ""
+                ? UpdateTitleInput.value
+                : specificBlog.header;
+            const updatedDesc =
+              UpdateDescInput.value !== ""
+                ? UpdateDescInput.value
+                : specificBlog.desc;
+            var file = UpdateImageInput.files[0];
+            let updatedImg = specificBlog.img; // Initialize to the previous image
 
-      const updateBtn = document.querySelector(".updateBtn");
-      const updateModal = document.querySelector(".modal");
-      const closeModal = document.querySelector(".close");
-
-      // blogButtonUpdate.addEventListener("click", () => {
-      //   updateModal.classList.add("active");
-      // });
-
-      closeModal.addEventListener("click", () => {
+            if (file) {
+              // Create a new FileReader object
+              var reader = new FileReader();
+              // Event listener for when the FileReader finishes reading the file
+              reader.onload = function (event) {
+                // Get the base64-encoded string from the FileReader result
+                var base64Image = event.target.result;
+                updatedImg = base64Image; // Update to the new image
+                // Update the specific blog with the new or previous values
+                blogsContent[specificBlogIndex] = {
+                  ...specificBlog,
+                  header: updatedHeader,
+                  desc: updatedDesc,
+                  img: updatedImg,
+                };
+                // Update localStorage with the modified array
+                localStorage.setItem(
+                  "blogsContent",
+                  JSON.stringify(blogsContent)
+                );
+                renderBlogs(blogsContent);
+                // Log the updated blog data
+                console.log("Updated Blog:", blogsContent[specificBlogIndex]);
+                console.log(updatedImg);
+                // Close the update modal or perform any other action
+                updateModal.classList.remove("active");
+              };
+              // Read the image file as a data URL (base64-encoded string)
+              reader.readAsDataURL(file);
+            } else {
+              // Update the specific blog with the new or previous values
+              blogsContent[specificBlogIndex] = {
+                ...specificBlog,
+                header: updatedHeader,
+                desc: updatedDesc,
+                img: updatedImg,
+              };
+              // Update localStorage with the modified array
+              localStorage.setItem(
+                "blogsContent",
+                JSON.stringify(blogsContent)
+              );
+              renderBlogs(blogsContent);
+              // Log the updated blog data
+              console.log("Updated Blog:", blogsContent[specificBlogIndex]);
+              console.log(updatedImg);
+              // Close the update modal or perform any other action
+              updateModal.classList.remove("active");
+            }
+          } else {
+            console.log("Blog Not Found");
+          }
+        });
+      });
+      closeModal.addEventListener("click", function () {
         updateModal.classList.remove("active");
       });
+      blogscont.appendChild(blog);
 
-      blogs.appendChild(blog);
       // Define event listener for blogButtonUpdate outside of forEach loop
       // blogButtonUpdate.addEventListener("click", () => {
       //   updateModal.classList.add("active");
-
       //   // Get the ID of the specific blog associated with the update button
       //   const blogId = content.id;
-
       //   // Find the specific blog in the blogsContent array using its ID
       //   const specificBlogIndex = blogsContent.findIndex(
       //     (blog) => blog.id === blogId
       //   );
-
       //   // Ensure that the specific blog is found in the blogsContent array
       //   if (specificBlogIndex !== -1) {
       //     const specificBlog = blogsContent[specificBlogIndex];
-
       //     // Populate the modal inputs with the current values of the specific blog
       //     const UpdateImageInput = document.getElementById("image");
       //     const UpdateTitleInput = document.getElementById("title");
       //     const UpdateDescInput = document.getElementById("description");
-
       //     // Display a preview of the image instead of setting the value directly
       //     const imgPreview = document.getElementById("image");
       //     imgPreview.src = specificBlog.img;
-
       //     // Set the title and description values
       //     UpdateTitleInput.value = specificBlog.header;
       //     UpdateDescInput.value = specificBlog.desc;
-
       //     // Store the current values in data attributes for comparison later
       //     UpdateImageInput.setAttribute(
       //       "data-previous-value",
@@ -191,15 +245,13 @@ function renderBlogs(blogsContent) {
       // Define event listener for blogButtonUpdate outside of forEach loop
       // Define event listener for blogButtonUpdate outside of forEach loop
     });
-
     // Now continue with the rest of your code...
   }
 }
-
 // Optionally, render blogs when the window loads
 window.onload = function () {
   // Retrieve and render existing blogs from localStorage
-  const storedBlogsContent = JSON.parse(localStorage.getItem("blogsContent"));
+  var storedBlogsContent = JSON.parse(localStorage.getItem("blogsContent"));
   if (storedBlogsContent) {
     // console.log("loaded");
     // console.log(storedBlogsContent);
