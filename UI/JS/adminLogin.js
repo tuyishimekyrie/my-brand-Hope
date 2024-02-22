@@ -17,12 +17,12 @@ window.addEventListener("load", function () {
   }
   console.log("hello");
 });
-var loginCredentials = {
-  email: "tuyishimehope01@gmail.com",
-  password: "1234567",
-authenticated: false
-};
-localStorage.setItem("adminCredentials", JSON.stringify(loginCredentials));
+// var loginCredentials = {
+//   email: "tuyishimehope01@gmail.com",
+//   password: "1234567",
+// authenticated: false
+// };
+// localStorage.setItem("adminCredentials", JSON.stringify(loginCredentials));
 buttonSignIn.addEventListener("click", function (e) {
   e.preventDefault();
 
