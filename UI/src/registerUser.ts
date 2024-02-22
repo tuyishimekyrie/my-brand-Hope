@@ -8,6 +8,22 @@ const cpasswordInputCont = document.getElementById(
 const buttonSignUpBtn = document.querySelector(".button") as HTMLButtonElement;
 const errorMessageCont = document.querySelector(".error") as HTMLElement;
 
+window.addEventListener("load", () => {
+  const usersData = localStorage.getItem("userCredentials");
+  let data: any[] = [];
+  if (usersData) {
+    data = JSON.parse(usersData);
+    data.forEach((element) => {
+      if (element.authenticated) {
+        window.location.href = "../../index.html";
+      }
+    });
+  }
+
+  console.log("hello");
+});
+
+
 buttonSignUpBtn.addEventListener("click", (e: Event) => {
   e.preventDefault();
 

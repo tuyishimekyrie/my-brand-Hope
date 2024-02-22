@@ -4,7 +4,30 @@ const navClose = document.querySelector(".mobile-nav ");
 const menu = document.querySelector(".menu");
 const logoutBtn = document.querySelector(".logout");
 
-console.log(logoutBtn)
+window.addEventListener("load", function () {
+  var usersData = localStorage.getItem("adminCredentials");
+  var datas = [];
+  if (usersData) {
+    datas = JSON.parse(usersData);
+    var authenticatedUser = datas.find(function (element) {
+      return element.authenticated;
+    });
+    console.log(authenticatedUser.authenticated)
+    // if (authenticatedUser.authenticated) {
+    //   window.location.href = "../pages/HomeDashboard.html"; // Redirect if an authenticated user is found
+    // } 
+    // else {
+    //   window.location.href = "../pages/adminLogin.html"; // Redirect to login page if no authenticated user is found
+    // }
+ }
+   //  else {
+  //   console.log("No user data found");
+  //   // Handle the case where no user data is found in localStorage
+  // }
+  console.log("hello");
+});
+
+// console.log(logoutBtn)
 // Dashboard Cards
 
 const userCount = document.querySelector(".row2 p");
@@ -46,13 +69,13 @@ nav.addEventListener("click", () => {
 });
 
 logoutBtn.addEventListener("click", () => {
-  const usersCred = localStorage.getItem("userCredentials");
+  const usersCred = localStorage.getItem("adminCredentials");
   const data = JSON.parse(usersCred);
   if (data) {
     for (const userData of data) {
       if (userData.authenticated) {
         userData.authenticated = false;
-        localStorage.setItem("userCredentials", JSON.stringify(data));
+        localStorage.setItem("adminCredentials", JSON.stringify(data));
         break; // Exit loop once the authenticated user is found and updated
       }
     }
@@ -60,3 +83,4 @@ logoutBtn.addEventListener("click", () => {
   }
   console.log(data);
 });
+

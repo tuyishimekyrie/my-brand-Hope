@@ -3,7 +3,20 @@ const emailINPUTCont = document.getElementById("email") as HTMLInputElement;
 const passwordINPUTCont = document.getElementById("password") as HTMLInputElement;
 const buttonSignInSubmit = document.querySelector(".button") as HTMLButtonElement;
 const messagesCont = document.querySelector(".message") as HTMLElement;
-
+window.addEventListener("load", () => {
+  const usersData = localStorage.getItem("userCredentials");
+  let data: any[] = [];
+  if (usersData) {
+    data = JSON.parse(usersData);
+    data.forEach(element => {
+      if (element.authenticated) {
+         window.location.href = "../../index.html";
+      }
+    });
+  }
+  
+  console.log("hello")
+})
 buttonSignInSubmit.addEventListener("click", (e) => {
   e.preventDefault();
   // Regular expression for email validation
@@ -50,7 +63,7 @@ buttonSignInSubmit.addEventListener("click", (e) => {
 
         setTimeout(() => {
           messagesCont.innerHTML = "";
-          window.location.href = "../pages/HomeDashboard.html";
+          window.location.href = "../../index.html";
         }, 1000);
 
         messagesCont.innerHTML = "Logged in Successfully";
