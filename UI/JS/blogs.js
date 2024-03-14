@@ -52,116 +52,146 @@ const blogsContent = JSON.parse(data);
 //   },
 // ];
 
+
 window.onload = function () {
-  blogsContent.forEach((content) => {
-    const pro = document.createElement("div");
-    pro.classList = "blog";
+  function fetchAndRenderBlogs() {
+    fetch("http://localhost:3000/api/blogs")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((blogs) => {
+        // Clear existing blogs before rendering
+        //  blogscont.innerHTML = "";
+        // Render each blog
+        blogs.forEach((blog) => {
+          renderBlogs(blog);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching blogs:", error.message);
+        // Optionally display an error message to the user
+      });
+  }
+  // Initial fetch and render
+  fetchAndRenderBlogs();
 
-    const proImg = document.createElement("img");
-    proImg.classList = "img";
-    proImg.src = content.img; // Set image source
+  // Poll for updates every one second
+  // setInterval(fetchAndRenderBlogs, 1000);
+  function renderBlogs(blog) {
+    console.log(blog);
+    // blog.forEach((content) => {
+      const pro = document.createElement("div");
+      pro.classList = "blog";
 
-    const proHeading = document.createElement("h2");
-    proHeading.classList = "blogHeader";
-    proHeading.textContent = content.header; // Set heading text
+      const proImg = document.createElement("img");
+      proImg.classList = "img";
+      proImg.src = blog.img; // Set image source
 
-    const proDesc = document.createElement("p");
-    proDesc.classList = "blogDesc";
-    proDesc.textContent = truncateText(content.desc, 20);
+      const proHeading = document.createElement("h2");
+      proHeading.classList = "blogHeader";
+      proHeading.textContent = blog.header; // Set heading text
 
-    const proFeatures = document.createElement("div");
-    proFeatures.classList = "features";
+      const proDesc = document.createElement("p");
+      proDesc.classList = "blogDesc";
+      proDesc.textContent = truncateText(blog.desc, 20);
 
-    const proLikes = document.createElement("div");
-    proLikes.classList = "likes";
-    const likesCount = document.createElement("p");
-    likesCount.classList = "likesCount";
-    likesCount.textContent = content.likesCount;
-    const likesLogo = document.createElement("img");
-    likesLogo.classList = "likesLogo";
-    likesLogo.src = "../assests/Facebook Like.png";
-    proLikes.appendChild(likesCount);
-    proLikes.appendChild(likesLogo);
+      const proFeatures = document.createElement("div");
+      proFeatures.classList = "features";
 
-    const proComments = document.createElement("div");
-    proComments.classList = "likes";
-    const commentsCount = document.createElement("p");
-    commentsCount.classList = "commentsCount";
-    commentsCount.textContent = content.comments.length;
-    const commentsLogo = document.createElement("img");
-    commentsLogo.classList = "commentsLogo";
-    commentsLogo.src = "../assests/Topic.png";
-    proComments.appendChild(commentsCount);
-    proComments.appendChild(commentsLogo);
+      const proLikes = document.createElement("div");
+      proLikes.classList = "likes";
+      const likesCount = document.createElement("p");
+      likesCount.classList = "likesCount";
+      likesCount.textContent = blog.likesCount;
+      const likesLogo = document.createElement("img");
+      likesLogo.classList = "likesLogo";
+      likesLogo.src = "../assests/Facebook Like.png";
+      proLikes.appendChild(likesCount);
+      proLikes.appendChild(likesLogo);
 
-    proFeatures.appendChild(proLikes);
-    proFeatures.appendChild(proComments);
+      const proComments = document.createElement("div");
+      proComments.classList = "likes";
+      const commentsCount = document.createElement("p");
+      commentsCount.classList = "commentsCount";
+      commentsCount.textContent = blog.comments.length;
+      const commentsLogo = document.createElement("img");
+      commentsLogo.classList = "commentsLogo";
+      commentsLogo.src = "../assests/Topic.png";
+      proComments.appendChild(commentsCount);
+      proComments.appendChild(commentsLogo);
 
-    const proSite = document.createElement("a");
-    proSite.classList = "readMore";
-    proSite.href = content.readMoreURL;
-    proSite.setAttribute("href", content.readMoreURL); // Set href attribute
-    // proSite.setAttribute("target", "_blank");
-    const button = document.createElement("button");
-    button.classList = "login";
-    button.textContent = "Read More";
-    proSite.appendChild(button);
+      proFeatures.appendChild(proLikes);
+      proFeatures.appendChild(proComments);
 
-    // Add event listener to the entire blog post
-    pro.addEventListener("click", () => {
-      // Store the clicked blog's id in localStorage
-      localStorage.setItem("clickedBlogId", content.id);
-      // Redirect to the specified blog URL
-      // window.location.href = content.readMoreURL;
-    });
+      const proSite = document.createElement("a");
+      proSite.classList = "readMore";
+      proSite.href = "./Blog.html";
+      // proSite.setAttribute("href", blog.readMoreURL); // Set href attribute
+      // proSite.setAttribute("target", "_blank");
+      const button = document.createElement("button");
+      button.classList = "login";
+      button.textContent = "Read More";
+      proSite.appendChild(button);
 
-    pro.appendChild(proImg);
-    pro.appendChild(proHeading);
-    pro.appendChild(proDesc);
-    pro.appendChild(proFeatures);
-    pro.appendChild(proSite);
+      // Add event listener to the entire blog post
+      pro.addEventListener("click", () => {
+        // Store the clicked blog's id in localStorage
+        localStorage.setItem("clickedBlogId", blog._id);
+        // Redirect to the specified blog URL
+        // window.location.href = content.readMoreURL;
+      });
 
-    blogs.appendChild(pro);
+      pro.appendChild(proImg);
+      pro.appendChild(proHeading);
+      pro.appendChild(proDesc);
+      pro.appendChild(proFeatures);
+      pro.appendChild(proSite);
 
-    // Function to truncate text to specified number of words
-    function truncateText(text, numWords) {
-      const words = text.split(" ");
-      if (words.length > numWords) {
-        return words.slice(0, numWords).join(" ") + "...";
+      blogs.appendChild(pro);
+
+      // Function to truncate text to specified number of words
+      function truncateText(text, numWords) {
+        const words = text.split(" ");
+        if (words.length > numWords) {
+          return words.slice(0, numWords).join(" ") + "...";
+        }
+        return text;
       }
-      return text;
-    }
-  });
+    // });
+  }
   // Attach event listener outside the loop
   const likesLogos = document.querySelectorAll(".likesLogo");
-  likesLogos.forEach((likesLogo, index) => {
-    likesLogo.addEventListener("click", () => {
-      // Toggle the like state
-      if (!blogsContent[index].liked) {
-        // Increment the likes count
-        blogsContent[index].likesCount++;
-        blogsContent[index].liked = true;
-      } else {
-        // Decrement the likes count
-        blogsContent[index].likesCount--;
-        blogsContent[index].liked = false;
-      }
+  // likesLogos.forEach((likesLogo, index) => {
+  //   likesLogo.addEventListener("click", () => {
+  //     // Toggle the like state
+  //     if (!blogsContent[index].liked) {
+  //       // Increment the likes count
+  //       blogsContent[index].likesCount++;
+  //       blogsContent[index].liked = true;
+  //     } else {
+  //       // Decrement the likes count
+  //       blogsContent[index].likesCount--;
+  //       blogsContent[index].liked = false;
+  //     }
 
-      // Update the likes count in localStorage
-      localStorage.setItem("blogsContent", JSON.stringify(blogsContent));
+  //     // Update the likes count in localStorage
+  //     localStorage.setItem("blogsContent", JSON.stringify(blogsContent));
 
-      // Update the UI to reflect the new likes count and state
-      const likesCount = likesLogo.parentElement.querySelector(".likesCount");
-      likesCount.textContent = blogsContent[index].likesCount;
+  //     // Update the UI to reflect the new likes count and state
+  //     const likesCount = likesLogo.parentElement.querySelector(".likesCount");
+  //     likesCount.textContent = blogsContent[index].likesCount;
 
-      // Update the like button appearance based on the state
-      likesLogo.src = blogsContent[index].liked
-        ? "../assests/Facebook Like.png"
-        : "../assests/Facebook like.png";
+  //     // Update the like button appearance based on the state
+  //     likesLogo.src = blogsContent[index].liked
+  //       ? "../assests/Facebook Like.png"
+  //       : "../assests/Facebook like.png";
 
-      console.log("Clicked");
-    });
-  });
+  //     console.log("Clicked");
+  //   });
+  // });
 };
 
 

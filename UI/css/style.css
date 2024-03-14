@@ -92,6 +92,7 @@ li {
   padding: 0.65rem 1.5rem;
   border-radius: 5rem;
   color: var(--white);
+  margin-left: .5rem;
 }
 .login:hover {
   background-color: #9e7cff;

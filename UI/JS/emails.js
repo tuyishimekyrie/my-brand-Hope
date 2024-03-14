@@ -67,66 +67,72 @@ function renderEmails(emailsContent) {
 }
 
 // Function to retrieve data from localStorage and update the emailsContent array
-function fetchDataAndUpdate() {
-  // Retrieve existing data from localStorage
-  const storedData = localStorage.getItem("contactData");
+async function fetchDataAndUpdate() {
+  try {
+    // Fetch messages from the backend API
+    const response = await fetch(
+      "https://mybrandbackend-q8gq.onrender.com/api/messages/getALL",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": getToken(), // Include token in the header
+        },
+      }
+    );
+    if (!response.ok) {
+      console.error("Failed to fetch messages");
+    }
+    const messages = await response.json();
 
-  // Parse the retrieved data into an array of objects
-  const emailsContent = JSON.parse(storedData) || [];
-
-  // Calculate the time difference for each email
+    // Calculate time difference for each message
   const now = new Date();
-  emailsContent.forEach((email) => {
-    const messageDate = new Date(email.date);
+  messages.forEach((message) => {
+    const messageDate = new Date(message.createdAt);
     const differenceInMilliseconds = now - messageDate;
-
-    // Calculate time difference in various units
     const differenceInSeconds = Math.floor(differenceInMilliseconds / 1000);
     const differenceInMinutes = Math.floor(differenceInSeconds / 60);
     const differenceInHours = Math.floor(differenceInMinutes / 60);
     const differenceInDays = Math.floor(differenceInHours / 24);
-    const differenceInWeeks = Math.floor(differenceInDays / 7);
-    const differenceInMonths = Math.floor(differenceInDays / 30); // Approximation
-    const differenceInYears = Math.floor(differenceInDays / 365); // Approximation
+
+    // Debugging logs
+    console.log("Message creation date:", messageDate);
+    console.log("Current date:", now);
+    console.log("Time difference in milliseconds:", differenceInMilliseconds);
 
     // Construct the time ago string based on the largest non-zero difference
-    if (differenceInYears > 0) {
-      email.timeAgo = `${differenceInYears} year${
-        differenceInYears !== 1 ? "s" : ""
-      } ago`;
-    } else if (differenceInMonths > 0) {
-      email.timeAgo = `${differenceInMonths} month${
-        differenceInMonths !== 1 ? "s" : ""
-      } ago`;
-    } else if (differenceInWeeks > 0) {
-      email.timeAgo = `${differenceInWeeks} week${
-        differenceInWeeks !== 1 ? "s" : ""
-      } ago`;
-    } else if (differenceInDays > 0) {
-      email.timeAgo = `${differenceInDays} day${
+    let timeAgo = "";
+    if (differenceInDays > 0) {
+      timeAgo = `${differenceInDays} day${
         differenceInDays !== 1 ? "s" : ""
       } ago`;
     } else if (differenceInHours > 0) {
-      email.timeAgo = `${differenceInHours} hour${
+      timeAgo = `${differenceInHours} hour${
         differenceInHours !== 1 ? "s" : ""
       } ago`;
     } else if (differenceInMinutes > 0) {
-      email.timeAgo = `${differenceInMinutes} minute${
+      timeAgo = `${differenceInMinutes} minute${
         differenceInMinutes !== 1 ? "s" : ""
       } ago`;
     } else {
-      email.timeAgo = "Just now";
+      timeAgo = "Just now";
     }
+
+    // Add the time ago string to the message object
+    message.timeAgo = timeAgo;
   });
 
-  console.log(emailsContent);
 
-  // Render the emails on the UI
-  renderEmails(emailsContent);
+    // Render the messages on the UI
+    renderEmails(messages);
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+  }
 }
+
 
 // Initial fetch and update
 fetchDataAndUpdate();
 
 // Set interval to fetch and update data every 3 seconds
-setInterval(fetchDataAndUpdate, 3000);
+// setInterval(fetchDataAndUpdate, 3000);

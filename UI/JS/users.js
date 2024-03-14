@@ -1,41 +1,34 @@
 const Users = document.querySelector(".users");
-
-// const usersContent = [
-
-//   {
-//     id: 20,
-//     name: "Aiden Cooper",
-//     email: "aiden@example.com",
-//   },
-// ];
-
-// Function to render emails on the UI
+function getToken() {
+  return localStorage.getItem("token-admin");
+}
+// Function to render users on the UI
 function renderUsers(usersContent) {
-  const emailsContainer = document.querySelector(".users");
-  emailsContainer.innerHTML = ""; 
+  const usersContainer = document.querySelector(".users");
+  usersContainer.innerHTML = "";
+
   if (usersContent.length === 0) {
-    const emailMessageText = document.createElement("h1");
-    emailMessageText.textContent = "NO USERS";
-    emailMessageText.style.color = "white";
-    emailsContainer.appendChild(emailMessageText);
+    const noUsersText = document.createElement("h1");
+    noUsersText.textContent = "NO USERS";
+    noUsersText.style.color = "white";
+    usersContainer.appendChild(noUsersText);
   } else {
     usersContent.forEach((content) => {
       const user = document.createElement("div");
       user.classList = "user";
 
       const userId = document.createElement("p");
-      userId.textContent = content.id;
+      userId.textContent = content._id.substring(0, 5);
+
       const userName = document.createElement("p");
-      userName.textContent = content.names; // Set image source
+      userName.textContent = content.name;
 
       const userEmail = document.createElement("p");
-      //  proHeading.classList = "projectheading";
-      userEmail.textContent = content.email; // Set heading text
+      userEmail.textContent = content.email;
 
       const deleteButton = document.createElement("button");
       deleteButton.classList = "delete";
-      //  proSite.href = content.url; // Set site URL
-      deleteButton.textContent = "Delete"; // Set button text
+      deleteButton.textContent = "Delete";
 
       user.appendChild(userId);
       user.appendChild(userName);
@@ -43,50 +36,57 @@ function renderUsers(usersContent) {
       user.appendChild(deleteButton);
 
       Users.appendChild(user);
-     deleteButton.addEventListener("click", () => {
-       // Retrieve data from localStorage
-       const storedData = localStorage.getItem("userCredentials");
 
-       // Parse the retrieved data into an array of objects
-       let usersContent = JSON.parse(storedData) || [];
-
-       // Filter out the item to be deleted
-       usersContent = usersContent.filter((user) => user.id !== content.id);
-
-       // Update localStorage with the modified array
-       localStorage.setItem("userCredentials", JSON.stringify(usersContent));
-
-       console.log("User deleted successfully."); 
-     });
-
+      deleteButton.addEventListener("click", async () => {
+        try {
+          const response = await fetch(
+            `https://mybrandbackend-q8gq.onrender.com/api/users/delete/${content._id}`,
+            {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "x-auth-token": getToken(), // Include token in the header
+              },
+            }
+          );
+          if (!response.ok) {
+            throw new Error("Failed to delete user");
+          }
+          console.log("User deleted successfully.");
+          // After successful deletion, fetch and render users again
+          fetchDataAndUpdate();
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      });
     });
   }
 }
 
-// Function to retrieve data from localStorage and update the emailsContent array
-function fetchDataAndUpdate() {
-  // Retrieve existing data from localStorage
-  const storedData = localStorage.getItem("userCredentials");
-
-  // Parse the retrieved data into an array of objects
-  const usersContent = JSON.parse(storedData) || [];
-
-  // Calculate the "minutes ago" value for each message
-  // const now = new Date();
-  // usersContent.forEach((user) => {
-  //   const messageDate = new Date(user.date);
-  //   const differenceInMilliseconds = now - messageDate;
-  //   const differenceInMinutes = Math.round(differenceInMilliseconds / 60000); // Convert milliseconds to minutes
-  //   email.minutes = `${differenceInMinutes} minute${
-  //     differenceInMinutes !== 1 ? "s" : ""
-  //   } ago`;
-  // });
-
-  console.log(usersContent);
-
-  // Render the emails on the UI
-  renderUsers(usersContent);
+// Function to fetch users from the backend and update the UI
+async function fetchDataAndUpdate() {
+  try {
+    const response = await fetch(
+      "https://mybrandbackend-q8gq.onrender.com/api/users/getALL",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": getToken(), // Include token in the header
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch users");
+    }
+    const { users } = await response.json();
+    console.log("Response from backend:", users);
+    renderUsers(users);
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
+
 
 // Initial fetch and update
 fetchDataAndUpdate();
