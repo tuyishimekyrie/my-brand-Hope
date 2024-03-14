@@ -70,7 +70,7 @@ async function fetchCountsAndUpdateUI() {
 
     // Fetch message count
     const messageResponse = await fetch(
-      "http://localhost:3000/api/messages/getMessageCount",
+      "https://mybrandbackend-q8gq.onrender.com/api/messages/getMessageCount",
       {
         method: "GET",
         headers: {

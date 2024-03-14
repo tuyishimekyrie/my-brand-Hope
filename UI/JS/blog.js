@@ -11,7 +11,7 @@ window.onload = function () {
   let specificBlogID = clickedBlogID; // Assuming clickedBlogID is defined somewhere
   let specificBlog = null; // Initialize specificBlog as null or undefined
 
-  fetch("http://localhost:3000/api/blogs")
+  fetch("https://mybrandbackend-q8gq.onrender.com/api/blogs")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -219,7 +219,7 @@ window.onload = function () {
             try {
               const id = specificBlog._id; // Assuming 'specificBlog' contains the details of the current blog post
               const response = await fetch(
-                `http://localhost:3000/api/blogs/${id}/comments`,
+                `https://mybrandbackend-q8gq.onrender.com/api/blogs/${id}/comments`,
                 {
                   method: "POST",
                   headers: {
@@ -261,7 +261,7 @@ window.onload = function () {
             }
 
             const response = await fetch(
-              `http://localhost:3000/api/blogs/likes/${id}/like`,
+              `https://mybrandbackend-q8gq.onrender.com/api/blogs/likes/${id}/like`,
               {
                 method: "PATCH",
                 headers: {

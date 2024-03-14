@@ -55,7 +55,7 @@ const blogsContent = JSON.parse(data);
 
 window.onload = function () {
   function fetchAndRenderBlogs() {
-    fetch("http://localhost:3000/api/blogs")
+    fetch("https://mybrandbackend-q8gq.onrender.com/api/blogs")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

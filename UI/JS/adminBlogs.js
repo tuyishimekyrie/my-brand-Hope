@@ -261,7 +261,7 @@ btnCreate.addEventListener("click", function (e) {
       // Send the data to the backend
       console.log(formData);
       console.log(blogData);
-      fetch("http://localhost:3000/api/blogs/upload", {
+      fetch("https://mybrandbackend-q8gq.onrender.com/api/blogs/upload", {
         method: "POST",
         body: formData,
         headers: {
@@ -378,14 +378,18 @@ const descUpdate =
           formData.append("desc", descUpdate);
           console.log(formData);
           console.log(blogData);
-          fetch("http://localhost:3000/api/blogs/updates/" + blog._id, {
-            method: "PATCH",
-            body: formData,
-            headers: {
-              // "Content-Type": "application/json",
-              "x-auth-token": getToken(), // Include token in the header
-            },
-          })
+          fetch(
+            "https://mybrandbackend-q8gq.onrender.com/api/blogs/updates/" +
+              blog._id,
+            {
+              method: "PATCH",
+              body: formData,
+              headers: {
+                // "Content-Type": "application/json",
+                "x-auth-token": getToken(), // Include token in the header
+              },
+            }
+          )
             .then((response) => {
               if (!response.ok) {
                 throw new Error("Network response was not ok");
@@ -424,13 +428,16 @@ const descUpdate =
   });
   deleteBtn.addEventListener("click", function () {
     // Handle delete button click
-    fetch("http://localhost:3000/api/blogs/delete/" + blog._id, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "x-auth-token": getToken(), // Include token in the header
-      },
-    })
+    fetch(
+      "https://mybrandbackend-q8gq.onrender.com/api/blogs/delete/" + blog._id,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": getToken(), // Include token in the header
+        },
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -455,7 +462,7 @@ const descUpdate =
 window.onload = function () {
   // Function to fetch and render blogs
   function fetchAndRenderBlogs() {
-    fetch("http://localhost:3000/api/blogs")
+    fetch("https://mybrandbackend-q8gq.onrender.com/api/blogs")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
