@@ -224,7 +224,7 @@ window.onload = function () {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json",
-                    "x-auth-token": getToken(), // Assuming 'getToken()' retrieves the JWT token
+                    "x-auth-token": getToken(), 
                   },
                   body: JSON.stringify({ comment: commentText }),
                 }
