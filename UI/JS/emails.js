@@ -76,7 +76,7 @@ async function fetchDataAndUpdate() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "x-auth-token": getToken(), // Include token in the header
+          "x-auth-token": getToken(), 
         },
       }
     );

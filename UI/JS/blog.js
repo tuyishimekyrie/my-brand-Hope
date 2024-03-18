@@ -36,12 +36,9 @@ window.onload = function () {
     });
 
   function renderSpecificBlog(blog) {
-    // Check if specificBlog is available
     if (blog) {
-      // Render logic for specificBlog
       console.log("Rendering specific blog:", blog);
       if (specificBlog) {
-        // Create and append article element for the specific blog
         const article = document.createElement("div");
         article.classList.add("article");
 
@@ -234,17 +231,14 @@ window.onload = function () {
 
               if (response.ok) {
                 console.log("Comment added successfully:", data);
-                // Handle success, update UI or show a success message
               } else {
                 console.error("Failed to add comment:", data.message);
-                // Handle error, show error message to the user
               }
             } catch (error) {
               console.error("Error adding comment:", error);
-              // Handle error, show error message to the user
             }
           } else {
-            alert("Please enter a comment."); // Display error message if comment is empty
+            alert("Please enter a comment."); 
           }
         });
         const likesImgs = document.querySelector(".likes img");
@@ -252,8 +246,8 @@ window.onload = function () {
         console.log(likesImg);
         likesImg.addEventListener("click", async () => {
           try {
-            const id = specificBlog._id; // Replace 'specificBlogId' with the actual ID of the blog post
-            const token = getToken(); // Assuming 'getToken()' retrieves the JWT token
+            const id = specificBlog._id; 
+            const token = getToken(); 
 
             if (!token) {
               console.error("Access denied. No token provided.");
@@ -275,22 +269,16 @@ window.onload = function () {
 
             if (response.ok) {
               console.log("Blog like updated successfully:", data);
-              // Update UI with new likes count
               like.textContent = specificBlog.likesCount;
-              // You can also update the UI to reflect the liked/unliked state if needed
             } else {
               console.error("Failed to update blog like:", data.message);
-              // Handle error, show error message to the user
             }
           } catch (error) {
             console.error("Error updating blog like:", error);
-            // Handle error, show error message to the user
           }
         });
 
-        // Function to render all comments
         function renderComments(comments, commentsSectionDiv) {
-          // Clear previous comments
           commentsSectionDiv.innerHTML = "";
 
           // Iterate over all comments and create DOM elements for each comment
@@ -326,7 +314,7 @@ window.onload = function () {
         commentsSectionDiv.classList.add("comments-section");
         if (specificBlog.comments) {
           // Render all existing comments
-          renderComments(specificBlog.comments, commentsSectionDiv);
+            renderComments(specificBlog.comments, commentsSectionDiv);
         }
 
         const readMoreLink = document.createElement("a");
@@ -350,13 +338,7 @@ window.onload = function () {
     }
   }
 
-  const userData = localStorage.getItem("userCredentials");
-  const users = JSON.parse(userData);
 
-  // Select the like button element
-  // const likesImg = document.querySelector(".likes");
-  // const like = document.querySelector(".likes p");
-  // console.log(likesImg);
 
   // Event listener for likes
   // likesImg.addEventListener("click", () => {

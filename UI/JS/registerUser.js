@@ -5,6 +5,9 @@ var passwordInputCont = document.getElementById("password");
 var cpasswordInputCont = document.getElementById("confirm-password");
 var buttonSignUpBtn = document.querySelector(".button");
 var errorMessageCont = document.querySelector(".error");
+const registerWithGoogle = document.querySelector(".registerGoogle")
+
+
 
 window.addEventListener("load", async function () {
   const token = localStorage.getItem("token");
@@ -16,6 +19,45 @@ window.addEventListener("load", async function () {
     console.log("Token not available");
   }
 });
+
+
+registerWithGoogle.addEventListener("click",async (e) => {
+  e.preventDefault()
+  console.log("Clcked")
+    try {
+      const response = await fetch("http://localhost:3000/googleregister", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // body: JSON.stringify(userData),
+      });
+
+      console.log(response)
+
+      // if (!response.ok) {
+      //   // const errorMessage = await response.text();
+      //   // console.error(errorMessage);
+      //   response.text().then((errorMessage) => {
+      //     console.log("Error message:", errorMessage);
+      //     // Assuming messagesCont is a DOM element to display error messages
+      //     errorMessageCont.innerHTML = errorMessage;
+      //     errorMessageCont.style.color = "#FF0000";
+      //     setTimeout(function () {
+      //       errorMessageCont.innerHTML = "";
+      //     }, 3000);
+      //   });
+      // }
+      // if (response.status == 201) {
+      //       setTimeout(function () {
+      //         window.location.href = "../pages/login.html";
+      //       }, 500);
+      // }
+    } catch (error) {
+      console.log(error);
+    }
+})
+
 
 // window.addEventListener("load", function () {
 //   var usersData = localStorage.getItem("userCredentials");
